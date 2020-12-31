@@ -1,0 +1,26 @@
+# dont want to hit rate limit, need a seperate test that only runs on linux
+name: Run Test cases
+
+on: push
+
+env: 
+  BSER_APIKEY: ${{ secrets.BSER_APIKEY }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Dotnet Side by Side testing sample
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.101'
+      # - run: dotnet build BserClient.Tests
+      # - run: dotnet test BserClient.Tests --collect:"XPlat Code Coverage"
+      # - run: cp -R BserClient.Tests/TestResults/**/*.xml .
+      # - uses: codecov/codecov-action@v1
+      #   with:
+      #     file: ./coverage.cobertura.xml # optional
+      #     flags: unittests # optional
+      #     verbose: true # optional (default = false)

@@ -1,0 +1,34 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.101'
+      
+      # - name: Make folders
+      #   run: |
+      #     mkdir -p BserClient/html
+      #     mkdir -p BserClient/latex
+ 
+      # - uses: mattnotmitt/doxygen-action@v1
+      #   name: Build Documentation
+      #   with:
+      #       working-directory: BserClient
+      #       doxyfile-path: Doxyfile
+      #       # enable-latex: true
+
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./BserClient/html
