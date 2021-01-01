@@ -33,7 +33,6 @@ namespace ConScrap.Tests
             var result = template.Render(new { Products = ProductList });
             _testOutputHelper.WriteLine(result);
             _testOutputHelper.WriteLine(result.GetType().ToString());
-            Console.WriteLine(result);
         }
     }
 }
