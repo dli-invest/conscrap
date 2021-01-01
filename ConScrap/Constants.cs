@@ -6,15 +6,15 @@ namespace ConScrap
     {
         public const string SampleTemplateLatex = 
 @"
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
 \begin{document}
-    <ul id='products'>
+    \begin{itemize}
     {{ for product in products }}
-        <li>
-        <h2>{{ product }}</h2>
-            Price: {{ product}}
-        </li>
+        \item {{product}}
     {{ end }}
-    </ul>
+    \end{itemize}
 \end{document}";
     }
 }
