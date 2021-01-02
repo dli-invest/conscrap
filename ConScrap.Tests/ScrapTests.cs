@@ -32,8 +32,10 @@ namespace ConScrap.Tests
             string path = @"SampleData/yahoopkk.html";
             // Open the file to read from.
             string readText = File.ReadAllText(path);
-            object parsedConversations = Parse.ExtractYahooConversationsHtml(readText);
-            Console.WriteLine(parsedConversations.GetType().ToString());
+            HtmlAgilityPack.HtmlNode yahooHtml = Parse.ExtractYahooConversationsHtml(readText);
+            object parsedConversations = Parse.ExtractComments(yahooHtml);
+            // /div/div[1]/span/span
+            Console.WriteLine(yahooHtml.GetType().ToString());
         }
 
     }
