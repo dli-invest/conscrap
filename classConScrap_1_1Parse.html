@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ConScrap: ConScrap.Render Class Reference</title>
+<title>ConScrap: ConScrap.Parse Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,32 +63,35 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceConScrap.html">ConScrap</a></li><li class="navelem"><a class="el" href="classConScrap_1_1Render.html">Render</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceConScrap.html">ConScrap</a></li><li class="navelem"><a class="el" href="classConScrap_1_1Parse.html">Parse</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="classConScrap_1_1Render-members.html">List of all members</a>  </div>
+<a href="classConScrap_1_1Parse-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ConScrap.Render Class Reference</div>  </div>
+<div class="title">ConScrap.Parse Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Simple Utility functions to <a class="el" href="classConScrap_1_1Render.html" title="Simple Utility functions to Render Scriban Templates and load Template Files">Render</a> Scriban Templates and load Template Files  
- <a href="classConScrap_1_1Render.html#details">More...</a></p>
+<p>Parsing Html and extracting articles of interest  
+ <a href="classConScrap_1_1Parse.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a00494e15575466e9339aaf939b07fc39"><td class="memItemLeft" align="right" valign="top">static Scriban.Template&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConScrap_1_1Render.html#a00494e15575466e9339aaf939b07fc39">ParseTemplate</a> (string templateStr)</td></tr>
-<tr class="memdesc:a00494e15575466e9339aaf939b07fc39"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classConScrap_1_1Parse.html" title="Parsing Html and extracting articles of interest">Parse</a> Template  <a href="classConScrap_1_1Render.html#a00494e15575466e9339aaf939b07fc39">More...</a><br /></td></tr>
-<tr class="separator:a00494e15575466e9339aaf939b07fc39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe16aefd00748a95fac7e761fa9d9689"><td class="memItemLeft" align="right" valign="top">static HtmlAgilityPack.HtmlNodeCollection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConScrap_1_1Parse.html#abe16aefd00748a95fac7e761fa9d9689">ExtractYahooConversationsHtml</a> (string yahooHtml)</td></tr>
+<tr class="memdesc:abe16aefd00748a95fac7e761fa9d9689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the html node containing all the comments  <a href="classConScrap_1_1Parse.html#abe16aefd00748a95fac7e761fa9d9689">More...</a><br /></td></tr>
+<tr class="separator:abe16aefd00748a95fac7e761fa9d9689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1753163b83f5924296b8978673b7329"><td class="memItemLeft" align="right" valign="top"><a id="aa1753163b83f5924296b8978673b7329"></a>
+static object&#160;</td><td class="memItemRight" valign="bottom"><b>ExtractComments</b> (HtmlAgilityPack.HtmlNodeCollection yahooObject)</td></tr>
+<tr class="separator:aa1753163b83f5924296b8978673b7329"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simple Utility functions to <a class="el" href="classConScrap_1_1Render.html" title="Simple Utility functions to Render Scriban Templates and load Template Files">Render</a> Scriban Templates and load Template Files </p>
+<div class="textblock"><p>Parsing Html and extracting articles of interest </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a00494e15575466e9339aaf939b07fc39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00494e15575466e9339aaf939b07fc39">&#9670;&nbsp;</a></span>ParseTemplate()</h2>
+<a id="abe16aefd00748a95fac7e761fa9d9689"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe16aefd00748a95fac7e761fa9d9689">&#9670;&nbsp;</a></span>ExtractYahooConversationsHtml()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -97,10 +100,10 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static Scriban.Template ConScrap.Render.ParseTemplate </td>
+          <td class="memname">static HtmlAgilityPack.HtmlNodeCollection ConScrap.Parse.ExtractYahooConversationsHtml </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>templateStr</em></td><td>)</td>
+          <td class="paramname"><em>yahooHtml</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -111,12 +114,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classConScrap_1_1Parse.html" title="Parsing Html and extracting articles of interest">Parse</a> Template </p>
+<p>Extracts the html node containing all the comments </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">yahooHtml</td><td>Yahoo html in str format </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Render.cs</li>
+<li>Parse.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
