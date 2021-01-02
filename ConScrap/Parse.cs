@@ -44,13 +44,13 @@ namespace ConScrap
         {
             // make new html soup for comment
             var htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(node.InnerHtml);
+            htmlDoc.LoadHtml(commentNode.InnerHtml);
             var commentTag = htmlDoc.
                 DocumentNode.
                 SelectSingleNode(postDate);
             // get object data
-            // var yahooComment = new YahooComment(CommentDate=commentTag.InnerText);s
-            // Console.WriteLine(commentTag.InnerHtml);
+            var yahooComment = new YahooComment(CommentDate=commentTag.InnerText);
+            Console.WriteLine(commentTag.InnerHtml);
             return new {};
         }
         public static object ExtractComments(HtmlAgilityPack.HtmlNode yahooCommentNodes)
