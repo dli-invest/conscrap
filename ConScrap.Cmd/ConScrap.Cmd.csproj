@@ -10,7 +10,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConScrap.Render\ConScrap.Render.csproj" />
+    <ProjectReference Include="..\ConScrap\ConScrap.csproj" />
+  </ItemGroup>
+
+  <!-- Including SampleData to scrap -->
+  <ItemGroup>
+    <Content Include="../ConScrap.Tests/SampleData/yahoopkk.html" Link="SampleData/yahoopkk.html" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

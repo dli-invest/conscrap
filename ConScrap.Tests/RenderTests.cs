@@ -9,11 +9,11 @@ using Scriban;
 namespace ConScrap.Tests
 {
     // [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    public class ConScrap : IDisposable
+    public class TestRender : IDisposable
     {
         private readonly ITestOutputHelper _testOutputHelper;
 
-        public ConScrap(ITestOutputHelper testOutputHelper)
+        public TestRender(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }
