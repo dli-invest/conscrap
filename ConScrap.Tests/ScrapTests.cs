@@ -33,9 +33,14 @@ namespace ConScrap.Tests
             // Open the file to read from.
             string readText = File.ReadAllText(path);
             HtmlAgilityPack.HtmlNode yahooHtml = Parse.ExtractYahooConversationsHtml(readText);
-            object parsedConversations = Parse.ExtractComments(yahooHtml);
+            var parsedConversations = Parse.ExtractComments(yahooHtml);
             // /div/div[1]/span/span
-            // Console.WriteLine(yahooHtml.GetType().ToString());
+            Console.WriteLine(parsedConversations.GetType().ToString());
+            foreach (var node in parsedConversations)
+            {
+                Console.WriteLine(node.PostDate);
+                Console.WriteLine(node.Content);
+            }
         }
 
         [Fact]

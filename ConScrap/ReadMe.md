@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/dli-invest/conscrap/branch/main/graph/badge.svg?token=1Tlyaj0OO4)](https://codecov.io/gh/dli-invest/conscrap)
 # ConScrap
 
 Conversation Scrapper made in C# so I can learn C#.

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using HtmlAgilityPack;
 using ConScrap.Types;
 namespace ConScrap
@@ -64,7 +65,6 @@ namespace ConScrap
                 Content=contentNode.InnerText,
                 Author=authorNode.InnerText
             };
-            // Console.WriteLine(yahooComment.CommentDate);
             return yahooComment;
         }
 
@@ -78,19 +78,21 @@ namespace ConScrap
             return htmlDoc;
         }
 
-        public static object ExtractComments(HtmlAgilityPack.HtmlNode yahooCommentNodes)
+        public static List<YahooComment> ExtractComments(HtmlAgilityPack.HtmlNode yahooCommentNodes)
         {
+            List<YahooComment> yahooComments= new List<YahooComment>();
             foreach (var node in yahooCommentNodes.ChildNodes)
             {
                 if (node.NodeType == HtmlNodeType.Element)
                 {
-                    GetYahooComment(node);
+                    var comment = GetYahooComment(node);
+                    yahooComments.Add(comment);
                     // Console.WriteLine("------------");
                     // Console.WriteLine(node.InnerHtml);
                     // Console.WriteLine("------------");
                 }
             }
-            return new {};
+            return yahooComments;
         }
     }
 }
