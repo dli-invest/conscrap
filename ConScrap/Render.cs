@@ -5,7 +5,7 @@ namespace ConScrap
     /// <summary>
     /// Simple Utility functions to Render Scriban Templates and load Template Files
     /// </summary>
-    public static class Render
+    public class Render
     {
         /// <summary>
         /// Parse Template
