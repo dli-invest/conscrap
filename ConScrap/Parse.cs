@@ -60,7 +60,7 @@ namespace ConScrap
 
             // get object data
             var yahooComment = new YahooComment{
-                CommentDate=postdateNode.InnerText,
+                PostDate=postdateNode.InnerText,
                 Content=contentNode.InnerText,
                 Author=authorNode.InnerText
             };
