@@ -6,8 +6,7 @@ namespace ConScrap
     /// <summary>
     /// Parsing Html and extracting articles of interest
     /// </summary>
-    // //*[@id="canvass-0-CanvassApplet"]/div/ul
-    //
+
     public class Parse
     {
         /// <summary>
@@ -41,16 +40,29 @@ namespace ConScrap
 
         public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode) 
         {
-            var postDate = "//div/div[1]/span/span";
+            var postDateXPath = Constants.YahooXPaths.postDateXPath;
+            var contentXPath = Constants.YahooXPaths.contentXPath;
+            var authorXPath = Constants.YahooXPaths.authorXPath;
             // make new html soup for comment
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(commentNode.InnerHtml);
-            var commentTag = htmlDoc.
+            var postdateNode = htmlDoc.
                 DocumentNode.
-                SelectSingleNode(postDate);
+                SelectSingleNode(postDateXPath);
+            
+            var contentNode = htmlDoc.
+                DocumentNode.
+                SelectSingleNode(contentXPath);
+
+            var authorNode = htmlDoc.
+                DocumentNode.
+                SelectSingleNode(authorXPath);
+
             // get object data
             var yahooComment = new YahooComment{
-                CommentDate=commentTag.InnerText
+                CommentDate=postdateNode.InnerText,
+                Content=contentNode.InnerText,
+                Author=authorNode.InnerText
             };
             // Console.WriteLine(yahooComment.CommentDate);
             return yahooComment;
