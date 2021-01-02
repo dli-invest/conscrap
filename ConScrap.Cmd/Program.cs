@@ -13,9 +13,11 @@ namespace ConScrap.Cmd
             string path = @"../ConScrap.Tests/SampleData/yahoopkk.html";
             // Open the file to read from.
             string readText = File.ReadAllText(path);
-            var yahooHtml = Parse.ExtractYahooConversationsHtml(readText);
-            var parsedConversations = Parse.ExtractComments(yahooHtml);
-            Console.WriteLine(parsedConversations.GetType().ToString());
+            var htmlDoc = Parse.MkHtmlDoc(readText);
+            var yahooCommentNodes = Parse.ExtractComments(yahooHtml);
+            // Console.WriteLine(yahooCommentNodes.GetType().ToString());
+            // var comment = Parse.GetYahooComment(yahooCommentNodes.childNodes[0]);
+            // Console.WriteLine(comment);
         }
     }
 }

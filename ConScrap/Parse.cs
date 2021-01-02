@@ -1,5 +1,6 @@
 using System;
 using HtmlAgilityPack;
+using ConScrap.Types;
 namespace ConScrap
 {
     /// <summary>
@@ -15,8 +16,6 @@ namespace ConScrap
         /// <param name="yahooHtml"> Yahoo html in str format </param>
         public static HtmlAgilityPack.HtmlNode ExtractYahooConversationsHtml(string yahooHtml)
         {
-            // Console.WriteLine(yahooHtml);
-            var commentsBodyClass = "comments-body";
             var commentListClass = "comments-list";
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(yahooHtml);
@@ -40,8 +39,9 @@ namespace ConScrap
             return htmlComments;
         } 
 
-        public static object GetYahooComment(HtmlAgilityPack.HtmlNode commentNode) 
+        public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode) 
         {
+            var postDate = "//div/div[1]/span/span";
             // make new html soup for comment
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(commentNode.InnerHtml);
@@ -49,21 +49,33 @@ namespace ConScrap
                 DocumentNode.
                 SelectSingleNode(postDate);
             // get object data
-            var yahooComment = new YahooComment(CommentDate=commentTag.InnerText);
-            Console.WriteLine(commentTag.InnerHtml);
-            return new {};
+            var yahooComment = new YahooComment{
+                CommentDate=commentTag.InnerText
+            };
+            // Console.WriteLine(yahooComment.CommentDate);
+            return yahooComment;
         }
+
+        /// <summary>
+        ///     Make html document from htmlStr
+        /// </summary>
+        public static HtmlDocument MkHtmlDoc(string htmlStr)
+        {
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(htmlStr);
+            return htmlDoc;
+        }
+
         public static object ExtractComments(HtmlAgilityPack.HtmlNode yahooCommentNodes)
         {
-            var postDate = "//div/div[1]/span/span";
             foreach (var node in yahooCommentNodes.ChildNodes)
             {
                 if (node.NodeType == HtmlNodeType.Element)
                 {
-                    
-                    Console.WriteLine("------------");
-                    Console.WriteLine(node.InnerHtml);
-                    Console.WriteLine("------------");
+                    GetYahooComment(node);
+                    // Console.WriteLine("------------");
+                    // Console.WriteLine(node.InnerHtml);
+                    // Console.WriteLine("------------");
                 }
             }
             return new {};

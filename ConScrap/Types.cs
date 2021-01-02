@@ -4,6 +4,6 @@ namespace ConScrap.Types
 {
      public class YahooComment
      {
-        public double CommentDate { get; set; }
+        public string CommentDate { get; set; }
      }
 }

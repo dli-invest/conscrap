@@ -20,5 +20,6 @@
 
     <ItemGroup>
       <Content Include="SampleData/yahoopkk.html" Link="SampleData/yahoopkk.html" CopyToOutputDirectory="PreserveNewest" />
+      <Content Include="SampleData/yahoopkk_comment.html" Link="SampleData/yahoopkk_comment.html" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 </Project>

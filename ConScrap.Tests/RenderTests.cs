@@ -31,6 +31,7 @@ namespace ConScrap.Tests
             var template = Render.ParseTemplate(readText);
             var ProductList = new List<string> { "test1", "test2", "test3" };
             var result = template.Render(new { Products = ProductList });
+            // making sure I can render templates
             _testOutputHelper.WriteLine(result);
             _testOutputHelper.WriteLine(result.GetType().ToString());
         }
@@ -41,6 +42,7 @@ namespace ConScrap.Tests
             string readText = Constants.PlainBox;
             var template = Render.ParseTemplate(readText);
             var result = template.Render(new { options = "colback=red!5!white,colframe=red!35!black", text="stock market millionaire" });
+            // close enough string equivalents
             _testOutputHelper.WriteLine(result);
             _testOutputHelper.WriteLine(result.GetType().ToString());
         }

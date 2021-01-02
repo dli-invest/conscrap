@@ -35,8 +35,20 @@ namespace ConScrap.Tests
             HtmlAgilityPack.HtmlNode yahooHtml = Parse.ExtractYahooConversationsHtml(readText);
             object parsedConversations = Parse.ExtractComments(yahooHtml);
             // /div/div[1]/span/span
-            Console.WriteLine(yahooHtml.GetType().ToString());
+            // Console.WriteLine(yahooHtml.GetType().ToString());
         }
 
+        [Fact]
+        public void TestExtractDate()
+        {
+            string path = @"SampleData/yahoopkk_comment.html";
+            // Open the file to read from.
+            string readText = File.ReadAllText(path);
+            HtmlAgilityPack.HtmlDocument htmlDoc = Parse.MkHtmlDoc(readText);
+            var yahooComment = Parse.GetYahooComment(htmlDoc.DocumentNode);
+            Assert.Equal("3 days ago", yahooComment.CommentDate);
+            // Console.WriteLine(yahooComment.CommentDate);
+            // object parsedConversations = Parse.ExtractComments(yahooHtml);
+        }
     }
 }
