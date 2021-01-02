@@ -25,12 +25,22 @@ namespace ConScrap.Tests
         }
 
         [Fact]
-        public void TestGetData()
+        public void TestSampleTemplate()
         {
             string readText = Constants.SampleTemplateLatex;
             var template = Render.ParseTemplate(readText);
             var ProductList = new List<string> { "test1", "test2", "test3" };
             var result = template.Render(new { Products = ProductList });
+            _testOutputHelper.WriteLine(result);
+            _testOutputHelper.WriteLine(result.GetType().ToString());
+        }
+
+        [Fact]
+        public void TestPlainBox()
+        {
+            string readText = Constants.PlainBox;
+            var template = Render.ParseTemplate(readText);
+            var result = template.Render(new { options = "colback=red!5!white,colframe=red!35!black", text="stock market millionaire" });
             _testOutputHelper.WriteLine(result);
             _testOutputHelper.WriteLine(result.GetType().ToString());
         }

@@ -16,5 +16,12 @@ namespace ConScrap
     {{ end }}
     \end{itemize}
 \end{document}";
+
+        public const string PlainBox =
+@"
+\begin{tcolorbox}[{{ if options }} {{options}} {{ else }} colback=red!5!white,colframe=red!75!black{{ end }}]
+  {{text}}
+\end{tcolorbox}
+";
     }
 }
