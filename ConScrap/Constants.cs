@@ -37,6 +37,8 @@ namespace ConScrap
             public const string contentXPath = "//div/div[2]/div";
 
             public const string authorXPath = "//div/div[1]/button";
+
+            public const string showMoreXPath = "//button[contains(., 'Show more')]";
         }
     }
 }

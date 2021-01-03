@@ -14,7 +14,8 @@ namespace ConScrap.Cmd
             // Open the file to read from.
             string readText = File.ReadAllText(path);
             var htmlDoc = Parse.MkHtmlDoc(readText);
-            var yahooCommentNodes = Parse.ExtractComments(yahooHtml);
+            Parse.GetShowButton(htmlDoc.DocumentNode);
+            // var yahooCommentNodes = Parse.ExtractComments(htmlDoc);
             // Console.WriteLine(yahooCommentNodes.GetType().ToString());
             // var comment = Parse.GetYahooComment(yahooCommentNodes.childNodes[0]);
             // Console.WriteLine(comment);

@@ -78,6 +78,21 @@ namespace ConScrap
             return htmlDoc;
         }
 
+        public static HtmlAgilityPack.HtmlNode GetShowButton(HtmlAgilityPack.HtmlNode yahooCommentNodes)
+        {
+            var showMoreXPath = Constants.YahooXPaths.showMoreXPath;
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(yahooCommentNodes.InnerHtml);
+            var postdateNode = htmlDoc.
+                DocumentNode.
+                SelectSingleNode(showMoreXPath);
+
+            // Console.WriteLine(postdateNode.OuterHtml);
+            // Console.WriteLine(postdateNode.InnerHtml);
+            // Console.WriteLine(postdateNode.InnerText);
+            return postdateNode;
+        }
+
         public static List<YahooComment> ExtractComments(HtmlAgilityPack.HtmlNode yahooCommentNodes)
         {
             List<YahooComment> yahooComments= new List<YahooComment>();
