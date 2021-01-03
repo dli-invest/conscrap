@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['yahoocomment_8',['YahooComment',['../classConScrap_1_1Types_1_1YahooComment.html',1,'ConScrap::Types']]],
-  ['yahooxpaths_9',['YahooXPaths',['../classConScrap_1_1Constants_1_1YahooXPaths.html',1,'ConScrap::Constants']]]
+  ['parse_7',['Parse',['../classConScrap_1_1Parse.html',1,'ConScrap']]],
+  ['parsetemplate_8',['ParseTemplate',['../classConScrap_1_1Render.html#a00494e15575466e9339aaf939b07fc39',1,'ConScrap::Render']]]
 ];

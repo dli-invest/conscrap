@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['constants_10',['Constants',['../classConScrap_1_1Constants.html',1,'ConScrap']]]
+  ['browser_12',['Browser',['../classConScrap_1_1Browser.html',1,'ConScrap']]]
 ];

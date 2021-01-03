@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['extractyahooconversationshtml_3',['ExtractYahooConversationsHtml',['../classConScrap_1_1Parse.html#a6952e2f1639f2fcec9287b8dc4f0adb8',1,'ConScrap::Parse']]]
+  ['conscrap_1',['ConScrap',['../namespaceConScrap.html',1,'']]],
+  ['constants_2',['Constants',['../classConScrap_1_1Constants.html',1,'ConScrap']]],
+  ['types_3',['Types',['../namespaceConScrap_1_1Types.html',1,'ConScrap']]]
 ];
