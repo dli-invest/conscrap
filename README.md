@@ -2,6 +2,8 @@
 # conscrap
 conversation scrapper for ceo, yahoo finance and eventually stockhouse
 
+Since I have been very good at keeping up at ceo.ca conversations, I will make the initial package only scan yahoo finance pages.
+
 ```
 dotnet new console -o ConScrap.Cmd
 dotnet new classlib -o ConScrap.Scrap

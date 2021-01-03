@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using ConScrap.Types;
@@ -39,6 +40,19 @@ namespace ConScrap
             return htmlComments;
         } 
 
+        ///<summary> Replace tex sensitive characters</summary>
+        /// \todo Mark urls in tex using \url{} after removing characters
+        public static string AdjustStrForTex(string s)
+        {
+            return s
+                .Replace("#$%$", @"shit")
+                .Replace("$", @"\$")
+                .Replace("%", @"\%")
+                .Replace("#", @"\#")
+                .Replace("_", @"\_")
+                .Replace("amp;", @"")
+                .Replace("&", @"\&");
+        }
         public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode) 
         {
             var postDateXPath = Constants.YahooXPaths.postDateXPath;
@@ -59,11 +73,27 @@ namespace ConScrap
                 DocumentNode.
                 SelectSingleNode(authorXPath);
 
+            // perform character adjustment
+            // replace $ with \$ and % with \%
             // get object data
+            var author = AdjustStrForTex(authorNode.InnerText);
+
+            string contentCleaned = Encoding.ASCII.GetString(
+                Encoding.Convert(
+                    Encoding.UTF8,
+                    Encoding.GetEncoding(
+                        Encoding.ASCII.EncodingName,
+                        new EncoderReplacementFallback(string.Empty),
+                        new DecoderExceptionFallback()
+                        ),
+                    Encoding.UTF8.GetBytes(contentNode.InnerText)
+                )
+            );
+            var content = AdjustStrForTex(contentCleaned);
             var yahooComment = new YahooComment{
                 PostDate=postdateNode.InnerText,
-                Content=contentNode.InnerText,
-                Author=authorNode.InnerText
+                Content=content,
+                Author=author
             };
             return yahooComment;
         }

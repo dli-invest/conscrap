@@ -1,4 +1,3 @@
-using System;
 
 namespace ConScrap
 {
@@ -28,6 +27,22 @@ namespace ConScrap
   {{text}}
 \end{tcolorbox}
 ";
+
+        public const string ReportTemplate = 
+@"
+\documentclass{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\begin{document}
+    \section{Yahoo Comments {{date}}}
+    {{ for comment in comments }}
+        \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={{comment.author}} - {{comment.post_date}}]
+            {{comment.content}}
+        \end{tcolorbox}
+    {{ end }}
+\end{document}";
 
         // copied from SampleData/yahoopkk_comment.html
         public class YahooXPaths

@@ -1,16 +1,13 @@
 using System;
 using Xunit;
 using Xunit.Abstractions;
-using System.Threading.Tasks;
-using ConScrap;
-using System.Collections.Generic;
-using Scriban;
-using System.IO;
-using System.Text;
 
 namespace ConScrap.Tests
 {
+    // browser stack can have at most 5 parallel tests
+    // limit to 5 tests
     // [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    [Collection("Sequential")]
     public class BrowserTest : IDisposable
     {
         private readonly ITestOutputHelper _testOutputHelper;
@@ -29,7 +26,15 @@ namespace ConScrap.Tests
         [Fact]
         public void TestExtractSelenium()
         {
-            ConScrap.Browser.TestBrowser();
+            Browser.TestBrowser();
+            // Console.WriteLine(yahooComment.CommentDate);
+            // object parsedConversations = Parse.ExtractComments(yahooHtml);
+        }
+
+        [Fact]
+        public void TestExtractPkkComments()
+        {
+            var yahooRpt = ConScrap.MkTexRpt();
             // Console.WriteLine(yahooComment.CommentDate);
             // object parsedConversations = Parse.ExtractComments(yahooHtml);
         }
