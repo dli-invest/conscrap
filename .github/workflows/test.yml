@@ -4,6 +4,10 @@ name: Run Test cases
 on: push
 
 
+env:
+  REMOTE_SELENIUM_KEY: ${{ secrets.REMOTE_SELENIUM_KEY }}
+  REMOTE_SELENIUM_USERNAME: ${{ secrets.REMOTE_SELENIUM_USERNAME }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
