@@ -35,11 +35,11 @@ namespace ConScrap.Tests
             HtmlAgilityPack.HtmlNode yahooHtml = Parse.ExtractYahooConversationsHtml(readText);
             var parsedConversations = Parse.ExtractComments(yahooHtml);
             // /div/div[1]/span/span
-            Console.WriteLine(parsedConversations.GetType().ToString());
+            // Console.WriteLine(parsedConversations.GetType().ToString());
             foreach (var node in parsedConversations)
             {
-                Console.WriteLine(node.PostDate);
-                Console.WriteLine(node.Content);
+                // Console.WriteLine(node.PostDate);
+                // Console.WriteLine(node.Content);
             }
         }
 
