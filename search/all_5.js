@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['parse_7',['Parse',['../classConScrap_1_1Parse.html',1,'ConScrap']]],
-  ['parsetemplate_8',['ParseTemplate',['../classConScrap_1_1Render.html#a00494e15575466e9339aaf939b07fc39',1,'ConScrap::Render']]]
+  ['mkhtmldoc_7',['MkHtmlDoc',['../classConScrap_1_1Parse.html#a7fa51ef758b977a708652ab18e71effd',1,'ConScrap::Parse']]]
 ];

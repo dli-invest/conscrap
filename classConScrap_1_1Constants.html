@@ -90,6 +90,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:aa864203bcf07a5e66677fcb3afda3f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75890becd0399b2f90bcfb6dede7e0d1"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><b>PlainBox</b></td></tr>
 <tr class="separator:a75890becd0399b2f90bcfb6dede7e0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1a38b1d2745fe6d67011ef51025909c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><b>ReportTemplate</b></td></tr>
+<tr class="separator:ae1a38b1d2745fe6d67011ef51025909c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Set of <a class="el" href="classConScrap_1_1Constants.html" title="Set of Constants including sample latex documents. The latex documents should include the report date...">Constants</a> including sample latex documents. The latex documents should include the report date, format and statistics. </p>
@@ -119,6 +121,43 @@ Static Public Attributes</h2></td></tr>
 <div class="line"><span class="stringliteral">  {{text}}</span></div>
 <div class="line"><span class="stringliteral">\end{tcolorbox}</span></div>
 <div class="line"><span class="stringliteral">&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae1a38b1d2745fe6d67011ef51025909c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1a38b1d2745fe6d67011ef51025909c">&#9670;&nbsp;</a></span>ReportTemplate</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string ConScrap.Constants.ReportTemplate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<div class="line"><span class="stringliteral">@&quot;</span></div>
+<div class="line"><span class="stringliteral">\documentclass{scrreprt}</span></div>
+<div class="line"><span class="stringliteral">\usepackage[utf8]{inputenc}</span></div>
+<div class="line"><span class="stringliteral">\usepackage{amssymb}</span></div>
+<div class="line"><span class="stringliteral">\usepackage{tikz,lipsum,lmodern}</span></div>
+<div class="line"><span class="stringliteral">\usepackage[most]{tcolorbox}</span></div>
+<div class="line"><span class="stringliteral">\begin{document}</span></div>
+<div class="line"><span class="stringliteral">    \section{Yahoo Comments {{date}}}</span></div>
+<div class="line"><span class="stringliteral">    {{ for comment in comments }}</span></div>
+<div class="line"><span class="stringliteral">        \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={{comment.author}} - {{comment.post_date}}]</span></div>
+<div class="line"><span class="stringliteral">            {{comment.content}}</span></div>
+<div class="line"><span class="stringliteral">        \end{tcolorbox}</span></div>
+<div class="line"><span class="stringliteral">    {{ end }}</span></div>
+<div class="line"><span class="stringliteral">\end{document}&quot;</span></div>
 </div><!-- fragment -->
 </div>
 </div>
