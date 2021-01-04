@@ -3,6 +3,8 @@ using System.Collections.Generic;
 /// \todo save report to file
 /// \todo save to csv or faunadb
 /// \todo improved cli interface
+/// \todo exe with working env vars
+/// \todo scrap for only new reports and/or html format
 namespace ConScrap
 {
     public class ConScrap 
