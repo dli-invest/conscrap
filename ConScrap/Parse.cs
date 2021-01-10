@@ -75,6 +75,10 @@ namespace ConScrap
             // replies-button get replies button xpath regex for number
             // //*[@id="canvass-0-CanvassApplet"]/div/ul/li[1]/div/div[4]/div[2]/button[1]/svg/span
 
+            var likesNode = htmlDoc.
+                DocumentNode.
+                SelectSingleNode(authorXPath);
+
             // perform character adjustment
             // replace $ with \$ and % with \%
             // get object data

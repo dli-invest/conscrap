@@ -52,7 +52,7 @@ namespace ConScrap.Tests
             HtmlAgilityPack.HtmlDocument htmlDoc = Parse.MkHtmlDoc(readText);
             var yahooComment = Parse.GetYahooComment(htmlDoc.DocumentNode);
             Assert.Equal("3 days ago", yahooComment.PostDate);
-            Assert.Equal("\$2.50 today. NASDAQ here Peak comes!\$4 by end of January", yahooComment.Content);
+            Assert.Equal(@"\$2.50 today. NASDAQ here Peak comes!\$4 by end of January", yahooComment.Content);
             Assert.Equal("Derek", yahooComment.Author);
         }
 
