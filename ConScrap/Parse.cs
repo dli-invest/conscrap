@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using ConScrap.Types;
@@ -39,6 +40,19 @@ namespace ConScrap
             return htmlComments;
         } 
 
+        ///<summary> Replace tex sensitive characters</summary>
+        /// \todo Mark urls in tex using \url{} after removing characters
+        public static string AdjustStrForTex(string s)
+        {
+            return s
+                .Replace("#$%$", @"shit")
+                .Replace("$", @"\$")
+                .Replace("%", @"\%")
+                .Replace("#", @"\#")
+                .Replace("_", @"\_")
+                .Replace("amp;", @"")
+                .Replace("&", @"\&");
+        }
         public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode) 
         {
             var postDateXPath = Constants.YahooXPaths.postDateXPath;
@@ -60,11 +74,28 @@ namespace ConScrap
                 SelectSingleNode(authorXPath);
             // replies-button get replies button xpath regex for number
             // //*[@id="canvass-0-CanvassApplet"]/div/ul/li[1]/div/div[4]/div[2]/button[1]/svg/span
+
+            // perform character adjustment
+            // replace $ with \$ and % with \%
             // get object data
+            var author = AdjustStrForTex(authorNode.InnerText);
+
+            string contentCleaned = Encoding.ASCII.GetString(
+                Encoding.Convert(
+                    Encoding.UTF8,
+                    Encoding.GetEncoding(
+                        Encoding.ASCII.EncodingName,
+                        new EncoderReplacementFallback(string.Empty),
+                        new DecoderExceptionFallback()
+                        ),
+                    Encoding.UTF8.GetBytes(contentNode.InnerText)
+                )
+            );
+            var content = AdjustStrForTex(contentCleaned);
             var yahooComment = new YahooComment{
                 PostDate=postdateNode.InnerText,
-                Content=contentNode.InnerText,
-                Author=authorNode.InnerText
+                Content=content,
+                Author=author
             };
             // get likes, maybe nested comments as well
             return yahooComment;
@@ -78,6 +109,21 @@ namespace ConScrap
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(htmlStr);
             return htmlDoc;
+        }
+
+        public static HtmlAgilityPack.HtmlNode GetShowButton(HtmlAgilityPack.HtmlNode yahooCommentNodes)
+        {
+            var showMoreXPath = Constants.YahooXPaths.showMoreXPath;
+            var htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(yahooCommentNodes.InnerHtml);
+            var postdateNode = htmlDoc.
+                DocumentNode.
+                SelectSingleNode(showMoreXPath);
+
+            // Console.WriteLine(postdateNode.OuterHtml);
+            // Console.WriteLine(postdateNode.InnerHtml);
+            // Console.WriteLine(postdateNode.InnerText);
+            return postdateNode;
         }
 
         public static List<YahooComment> ExtractComments(HtmlAgilityPack.HtmlNode yahooCommentNodes)

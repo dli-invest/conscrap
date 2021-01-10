@@ -1,4 +1,3 @@
-using System;
 
 namespace ConScrap
 {
@@ -29,6 +28,22 @@ namespace ConScrap
 \end{tcolorbox}
 ";
 
+        public const string ReportTemplate = 
+@"
+\documentclass{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+\begin{document}
+    \section{Yahoo Comments {{date}}}
+    {{ for comment in comments }}
+        \begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title={{comment.author}} - {{comment.post_date}}]
+            {{comment.content}}
+        \end{tcolorbox}
+    {{ end }}
+\end{document}";
+
         // copied from SampleData/yahoopkk_comment.html
         public class YahooXPaths
         {
@@ -42,6 +57,8 @@ namespace ConScrap
             public const string likesXPath = "/div/div[4]/div[2]/button[1]//text()";
             public const string dislikesXPath = "/div/div[4]/div[2]/button[1]//text()";
             // /html/body/div/div[4]/div[2]/button[2]
+
+            public const string showMoreXPath = "//button[contains(., 'Show more')]";
         }
     }
 }

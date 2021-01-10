@@ -54,8 +54,18 @@ namespace ConScrap.Tests
             Assert.Equal("3 days ago", yahooComment.PostDate);
             Assert.Equal("\$2.50 today. NASDAQ here Peak comes!\$4 by end of January", yahooComment.Content);
             Assert.Equal("Derek", yahooComment.Author);
-            // Console.WriteLine(yahooComment.CommentDate);
-            // object parsedConversations = Parse.ExtractComments(yahooHtml);
+        }
+
+        [Fact]
+        public void TestScrapShowButton()
+        {
+            string path = @"SampleData/yahoopkk_button.html";
+            // Open the file to read from.
+            string readText = File.ReadAllText(path);
+            HtmlAgilityPack.HtmlDocument htmlDoc = Parse.MkHtmlDoc(readText);
+            var showButtonNode = Parse.GetShowButton(htmlDoc.DocumentNode);
+            Assert.Equal("Show more", showButtonNode.InnerText);
+            // Assert.Equal("<span data-reactid=\"677\">Show more</span>", showButtonNode.InnerHtml);
         }
     }
 }

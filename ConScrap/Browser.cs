@@ -1,15 +1,19 @@
 using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
-
-namespace ConScrap 
+using System.Threading;
+namespace ConScrap
 {
-    public class Browser {
-        public static void TestBrowser() {
+    public class Browser
+    {
+        public static IWebDriver MkBrowser()
+        {
 
             string username = Environment.GetEnvironmentVariable("REMOTE_SELENIUM_USERNAME");
-            
             string key = Environment.GetEnvironmentVariable("REMOTE_SELENIUM_KEY");
+            if (username == null)
+                throw new InvalidOperationException("Missing REMOTE_SELENIUM_USERNAME env var");
+            if (key == null) throw new InvalidOperationException("Missing REMOTE_SELENIUM_KEY env var");
             // get environment variables for browserstack
             IWebDriver driver;
             OpenQA.Selenium.Chrome.ChromeOptions options = new OpenQA.Selenium.Chrome.ChromeOptions();
@@ -26,6 +30,45 @@ namespace ConScrap
             driver = new RemoteWebDriver(
               new Uri("https://hub-cloud.browserstack.com/wd/hub/"), options
             );
+            return driver;
+        }
+
+
+        /// <summary>
+        ///     Get all Entries from yahoo finance by constantly clicking button.
+        /// </summary>
+        public static string GetAllEntries()
+        {
+            IWebDriver driver = MkBrowser();
+            driver.Navigate().GoToUrl("https://finance.yahoo.com/quote/PKK.CN/community?p=PKK.CN");
+            // add wait for element to load in v2
+            Thread.Sleep(5000);
+            string showMoreXPath = Constants.YahooXPaths.showMoreXPath;
+            var element = driver.FindElement(By.XPath(showMoreXPath));
+            // Console.WriteLine(element);
+            // Console.WriteLine(element.GetAttribute("innerHTML"));
+            for (int i = 0; i < 100; i++)
+            {
+                try
+                {
+                    driver.FindElement(By.XPath(showMoreXPath));
+                    element.Click();
+                    Thread.Sleep(300);
+                }
+                catch (NoSuchElementException)
+                {
+                    Console.WriteLine(i + "Element does not exist! Stopping Loop");
+                    break;
+                }
+            }
+            String pageSource = driver.PageSource;
+            // System.IO.File.WriteAllText(@"WriteText.txt", pageSource);
+            return pageSource;
+        }
+
+        public static void TestBrowser()
+        {
+            IWebDriver driver = MkBrowser();
             driver.Navigate().GoToUrl("https://www.google.com");
             Console.WriteLine(driver.Title);
             IWebElement query = driver.FindElement(By.Name("q"));
@@ -33,7 +76,7 @@ namespace ConScrap
             query.Submit();
             Console.WriteLine(driver.Title);
             // Setting the status of test as 'passed' or 'failed' based on the condition; if title of the web page starts with 'BrowserStack'
-            if (string.Equals(driver.Title.Substring(0,12), "BrowserStack"))
+            if (string.Equals(driver.Title.Substring(0, 12), "BrowserStack"))
             {
                 ((IJavaScriptExecutor)driver).ExecuteScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"passed\", \"reason\": \" Title matched!\"}}");
             }
