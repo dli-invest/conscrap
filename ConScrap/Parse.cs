@@ -58,13 +58,15 @@ namespace ConScrap
             var authorNode = htmlDoc.
                 DocumentNode.
                 SelectSingleNode(authorXPath);
-
+            // replies-button get replies button xpath regex for number
+            // //*[@id="canvass-0-CanvassApplet"]/div/ul/li[1]/div/div[4]/div[2]/button[1]/svg/span
             // get object data
             var yahooComment = new YahooComment{
                 PostDate=postdateNode.InnerText,
                 Content=contentNode.InnerText,
                 Author=authorNode.InnerText
             };
+            // get likes, maybe nested comments as well
             return yahooComment;
         }
 
