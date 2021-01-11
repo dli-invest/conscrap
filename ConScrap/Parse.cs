@@ -58,6 +58,8 @@ namespace ConScrap
             var postDateXPath = Constants.YahooXPaths.postDateXPath;
             var contentXPath = Constants.YahooXPaths.contentXPath;
             var authorXPath = Constants.YahooXPaths.authorXPath;
+            var likesXPath = Constants.YahooXPaths.likesXPath;
+            var dislikeXPath = Constants.YahooXPaths.dislikesXPath;
             // make new html soup for comment
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(commentNode.InnerHtml);
@@ -77,8 +79,11 @@ namespace ConScrap
 
             var likesNode = htmlDoc.
                 DocumentNode.
-                SelectSingleNode(authorXPath);
+                SelectSingleNode(likesXPath);
 
+            var dislikesNode = htmlDoc.
+                DocumentNode.
+                SelectSingleNode(dislikeXPath);
             // perform character adjustment
             // replace $ with \$ and % with \%
             // get object data
@@ -101,6 +106,20 @@ namespace ConScrap
                 Content=content,
                 Author=author
             };
+
+            // add conditions
+            int number;
+            if (likesNode != null) {
+                // Console.WriteLine("Likes" + likesNode.InnerText);
+                Int32.TryParse(likesNode.InnerText, out number);
+                yahooComment.Likes = number;
+                number = 0;
+                // Console.WriteLine(likesNode.InnerHtml);
+            }
+            if (dislikesNode != null) {
+                Int32.TryParse(dislikesNode.InnerText, out number);
+                yahooComment.Dislikes = number;
+            }
             // get likes, maybe nested comments as well
             return yahooComment;
         }

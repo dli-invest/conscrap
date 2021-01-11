@@ -54,6 +54,8 @@ namespace ConScrap.Tests
             Assert.Equal("3 days ago", yahooComment.PostDate);
             Assert.Equal(@"\$2.50 today. NASDAQ here Peak comes!\$4 by end of January", yahooComment.Content);
             Assert.Equal("Derek", yahooComment.Author);
+            Assert.Equal(5, yahooComment.Likes);
+            Assert.Equal(0, yahooComment.Dislikes);
         }
 
         [Fact]
