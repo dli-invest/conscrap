@@ -43,7 +43,7 @@ namespace ConScrap
                 .Replace("amp;", @"")
                 .Replace("&", @"\&");
         }
-        public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode) 
+        public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode, bool parseForTex = true) 
         {
             var postDateXPath = Constants.YahooXPaths.postDateXPath;
             var contentXPath = Constants.YahooXPaths.contentXPath;
@@ -73,21 +73,30 @@ namespace ConScrap
                 DocumentNode.
                 SelectSingleNode(dislikeXPath);
 
-            // perform character adjustment, make it option
-            var author = AdjustStrForTex(authorNode.InnerText);
+            var author;
+            var content;
+            if (parseForTex) {
+                // \todo add flag to parse for tex vs not, default mode is tex
+                // perform character adjustment, make it option
+                author = AdjustStrForTex(authorNode.InnerText);
 
-            string contentCleaned = Encoding.ASCII.GetString(
-                Encoding.Convert(
-                    Encoding.UTF8,
-                    Encoding.GetEncoding(
-                        Encoding.ASCII.EncodingName,
-                        new EncoderReplacementFallback(string.Empty),
-                        new DecoderExceptionFallback()
-                        ),
-                    Encoding.UTF8.GetBytes(contentNode.InnerText)
-                )
-            );
-            var content = AdjustStrForTex(contentCleaned);
+                string contentCleaned = Encoding.ASCII.GetString(
+                    Encoding.Convert(
+                        Encoding.UTF8,
+                        Encoding.GetEncoding(
+                            Encoding.ASCII.EncodingName,
+                            new EncoderReplacementFallback(string.Empty),
+                            new DecoderExceptionFallback()
+                            ),
+                        Encoding.UTF8.GetBytes(contentNode.InnerText)
+                    )
+                );
+                content = AdjustStrForTex(contentCleaned);
+            } else {
+                author = authorNode.InnerText;
+                content = contentNode.InnerText;
+            }
+
             var yahooComment = new YahooComment{
                 PostDate=postdateNode.InnerText,
                 Content=content,
