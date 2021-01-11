@@ -52,11 +52,9 @@ namespace ConScrap
             public const string contentXPath = "//div/div[2]/div";
 
             public const string authorXPath = "//div/div[1]/button";
-            // /html/body/div/div[4]/div[2]/button[1]
 
             public const string likesXPath = "//div/div[4]/div[2]/button[1]//text()";
             public const string dislikesXPath = "//div/div[4]/div[2]/button[2]//text()";
-            // /html/body/div/div[4]/div[2]/button[2]
 
             public const string showMoreXPath = "//button[contains(., 'Show more')]";
         }

@@ -37,10 +37,12 @@ namespace ConScrap
         /// <summary>
         ///     Get all Entries from yahoo finance by constantly clicking button.
         /// </summary>
-        public static string GetAllEntries()
+        public static string GetAllEntries(string ticker = "PKK.CN")
         {
-            IWebDriver driver = MkBrowser();
-            driver.Navigate().GoToUrl("https://finance.yahoo.com/quote/PKK.CN/community?p=PKK.CN");
+            IWebDriver driver = Browser.MkBrowser();
+            string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", ticker);
+            driver.Navigate().GoToUrl(msgUrls);
+            // driver.Navigate().GoToUrl(msgUrls);
             // add wait for element to load in v2
             Thread.Sleep(5000);
             string showMoreXPath = Constants.YahooXPaths.showMoreXPath;
