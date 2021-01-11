@@ -27,16 +27,6 @@ namespace ConScrap
             var htmlComments = htmlDoc.
                 DocumentNode.
                 SelectSingleNode(xpath);
-            // Console.WriteLine(htmlComments);
-            // Console.WriteLine(htmlComments.ToString());
-            // Console.WriteLine(htmlComments.InnerHtml);
-            // foreach (var node in htmlComments.ChildNodes)
-            // {
-            //     if (node.NodeType == HtmlNodeType.Element)
-            //     {
-            //         Console.WriteLine(node.InnerText);
-            //     }
-            // }
             return htmlComments;
         } 
 
@@ -74,8 +64,6 @@ namespace ConScrap
             var authorNode = htmlDoc.
                 DocumentNode.
                 SelectSingleNode(authorXPath);
-            // replies-button get replies button xpath regex for number
-            // //*[@id="canvass-0-CanvassApplet"]/div/ul/li[1]/div/div[4]/div[2]/button[1]/svg/span
 
             var likesNode = htmlDoc.
                 DocumentNode.
@@ -84,9 +72,8 @@ namespace ConScrap
             var dislikesNode = htmlDoc.
                 DocumentNode.
                 SelectSingleNode(dislikeXPath);
-            // perform character adjustment
-            // replace $ with \$ and % with \%
-            // get object data
+
+            // perform character adjustment, make it option
             var author = AdjustStrForTex(authorNode.InnerText);
 
             string contentCleaned = Encoding.ASCII.GetString(

@@ -59,7 +59,7 @@ namespace ConScrap
                 }
                 catch (NoSuchElementException)
                 {
-                    Console.WriteLine(i + "Element does not exist! Stopping Loop");
+                    Console.WriteLine(i + " Element does not exist! Stopping Loop");
                     break;
                 }
             }

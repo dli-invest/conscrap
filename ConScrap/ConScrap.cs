@@ -27,5 +27,13 @@ namespace ConScrap
             var rpt = tmpl.Render(new { comments = yahooComments, date=dateString});
             return rpt;
         }
+
+        public static string MkTexRpt(List<Types.YahooComment> yahooComments)
+        {
+            var dateString = System.DateTime.Now.ToString("yyyy-MM-dd");
+            Scriban.Template tmpl = Render.ParseTemplate(Constants.ReportTemplate);
+            var rpt = tmpl.Render(new { comments = yahooComments, date=dateString});
+            return rpt;
+        }
     }
 } 
