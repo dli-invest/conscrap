@@ -10,3 +10,11 @@ dotnet new classlib -o ConScrap.Scrap
 dotnet new classlib -o ConScrap.Render
 dotnet new classlib -o ConScrap.Tests
 ```
+
+## Todo
+
+- [ ] Discord Integration (send yahoo comments that meet criteria to discord)
+- [ ] Save yahoo comments as csv (equal means same author and description)
+- [ ] Github actions workflow (cron)
+- [ ] Cli Interface for cron (to run manually? - could also use codespace)
+- [ ] Add templating for discord and html

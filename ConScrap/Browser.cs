@@ -37,6 +37,7 @@ namespace ConScrap
         /// <summary>
         ///     Get all Entries from yahoo finance by constantly clicking button.
         /// </summary>
+        /// \todo figure out how to show replies
         public static string GetAllEntries(string ticker = "PKK.CN")
         {
             IWebDriver driver = Browser.MkBrowser();
@@ -47,6 +48,7 @@ namespace ConScrap
             Thread.Sleep(5000);
             string showMoreXPath = Constants.YahooXPaths.showMoreXPath;
             var element = driver.FindElement(By.XPath(showMoreXPath));
+
             // Console.WriteLine(element);
             // Console.WriteLine(element.GetAttribute("innerHTML"));
             for (int i = 0; i < 100; i++)
@@ -56,6 +58,7 @@ namespace ConScrap
                     driver.FindElement(By.XPath(showMoreXPath));
                     element.Click();
                     Thread.Sleep(300);
+
                 }
                 catch (NoSuchElementException)
                 {
@@ -63,6 +66,25 @@ namespace ConScrap
                     break;
                 }
             }
+            // click on all the replies elements
+            // string repliesXPath = Constants.YahooXPaths.repliesXPath;
+            // driver.FindElement(By.ClassName("replies-button")).Click();
+            OpenQA.Selenium.Interactions.Actions action = new OpenQA.Selenium.Interactions.Actions(driver);
+            // foreach (var reply in replies)
+            // {
+            //     try
+            //     {
+            //         reply.Click();
+            //         Console.WriteLine(reply.TagName);
+            //         // Thread.Sleep(100);
+            //     }
+            //     catch (OpenQA.Selenium.StaleElementReferenceException)
+            //     {
+            //         Console.WriteLine("Element does not exist! Stopping Loop");
+            //         break;
+            //     }
+            // }
+
             String pageSource = driver.PageSource;
             // System.IO.File.WriteAllText(@"WriteText.txt", pageSource);
             return pageSource;

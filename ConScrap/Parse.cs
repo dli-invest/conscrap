@@ -73,8 +73,8 @@ namespace ConScrap
                 DocumentNode.
                 SelectSingleNode(dislikeXPath);
 
-            var author;
-            var content;
+            string author;
+            string content;
             if (parseForTex) {
                 // \todo add flag to parse for tex vs not, default mode is tex
                 // perform character adjustment, make it option

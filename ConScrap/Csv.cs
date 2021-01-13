@@ -8,6 +8,9 @@ namespace ConScrap
     // use similar approach to golang to check if entry is in csv
     public class Csv
     {
+        /// <summary>
+        ///  Generates csv file from a list of items from generic list
+        /// </summary>
         public static string GenerateReport<T>(List<T> items) where T : class
         {
             var output = "";
