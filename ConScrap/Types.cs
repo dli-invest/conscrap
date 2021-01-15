@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 namespace ConScrap.Types
 {
      public class YahooComment
@@ -26,5 +26,29 @@ namespace ConScrap.Types
             yComment.Dislikes = dislikes;
             return yComment;
         }
-     }
+    }
+
+    // implement discord data
+    public class DiscordData
+    {
+        public string content { get; set; }
+        public List<DiscordEmbed> embeds {get; set;}
+    }
+
+    public class DiscordEmbed
+    {
+        public string description { get; set;}
+        public string url {get; set;}
+        public string title {get; set;}
+        public List<DiscordField> fields {get; set;}
+
+        public string timestamp {get; set;}
+    }
+
+    public class DiscordField
+    {
+        public string name {get; set;}
+        public string value {get; set;}
+        public bool inline {get; set;}
+    }
 }
