@@ -61,6 +61,12 @@ namespace ConScrap
             public const string showMoreXPath = "//button[contains(., 'Show more')]";
             // button that contains reply text
             public const string repliesXPath = "//button[contains(., 'Replies')]";
+
+            public const string sortButtonXPath = "//button[contains(@class, 'sort-filter-button')]";
+
+            public const string sortByCreatedAtXPath = "//ul[contains(@class, 'sorting-tabs')]/li[2]/button[1]";
+
+            public const string sortByCreatedAtTextXPath = "//div[contain(., 'Newest Reactions')]";
         }
     }
 }

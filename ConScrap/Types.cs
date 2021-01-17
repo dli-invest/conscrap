@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 namespace ConScrap.Types
 {
     public class YahooComment
@@ -51,7 +52,7 @@ namespace ConScrap.Types
             int hashAuthor = Author.GetHashCode();
 
             //Calculate the hash code for the product.
-            return hashAuthor ^ hashContent;
+            return hashContent ^ hashAuthor;
         }
 
         // mapping data from yahoo finance to discord
@@ -59,22 +60,22 @@ namespace ConScrap.Types
         public DiscordEmbed mapCommentForDiscord(string yahooUrl = "https://finance.yahoo.com")
         {
             var title = String.Format(@"{0} - {1}", Author, PostDate);
-            var fields = new List<DiscordField> {
-                new DiscordField {
-                    name = "likes",
-                    value = Likes.ToString(),
-                    inline = true
-                },
-                new DiscordField {
-                    name = "Dislikes",
-                    value = Dislikes.ToString(),
-                    inline = true
-                }
-            };
             return new DiscordEmbed { 
                 description = Content,
                 title = title,
-                url = yahooUrl
+                url = yahooUrl,
+                fields = new List<DiscordField> {
+                    new DiscordField {
+                        name = "likes",
+                        value = Likes.ToString(),
+                        inline = true
+                    },
+                    new DiscordField {
+                        name = "Dislikes",
+                        value = Dislikes.ToString(),
+                        inline = true
+                    }
+                }
             };
         }
     }
@@ -91,9 +92,9 @@ namespace ConScrap.Types
         public string description { get; set; }
         public string url { get; set; }
         public string title { get; set; }
-        public List<DiscordField> fields { get; set; }
 
-        public string timestamp { get; set; }
+        public List<DiscordField> fields { get; set; }
+        // public string timestamp { get; set; }
     }
 
     public class DiscordField

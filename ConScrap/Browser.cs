@@ -50,11 +50,24 @@ namespace ConScrap
             // driver.Navigate().GoToUrl(msgUrls);
             // add wait for element to load in v2
             Thread.Sleep(5000);
+            // make into function
+            string sortXPath = Constants.YahooXPaths.sortButtonXPath;
+            var sortEle = driver.FindElement(By.XPath(sortXPath));
+            sortEle.Click();
+            Thread.Sleep(1000);
+            string createdXPath = Constants.YahooXPaths.sortByCreatedAtXPath;
+            var createdEle = driver.FindElement(By.XPath(createdXPath));
+            createdEle.Click();
+            Thread.Sleep(1000);
+
+            // sort by newest
             string showMoreXPath = Constants.YahooXPaths.showMoreXPath;
             var element = driver.FindElement(By.XPath(showMoreXPath));
 
             // Console.WriteLine(element);
             // Console.WriteLine(element.GetAttribute("innerHTML"));
+            /// \todo make function out of xpath
+            int numFailure = 0;
             for (int i = 0; i < 100; i++)
             {
                 try
@@ -67,7 +80,11 @@ namespace ConScrap
                 catch (NoSuchElementException)
                 {
                     Console.WriteLine(i + " Element does not exist! Stopping Loop");
-                    break;
+                    numFailure++;
+                    if (numFailure > 5) 
+                    {
+                        break;
+                    }
                 }
             }
             // click on all the replies elements

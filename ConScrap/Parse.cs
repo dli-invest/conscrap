@@ -140,9 +140,6 @@ namespace ConScrap
                 DocumentNode.
                 SelectSingleNode(showMoreXPath);
 
-            // Console.WriteLine(postdateNode.OuterHtml);
-            // Console.WriteLine(postdateNode.InnerHtml);
-            // Console.WriteLine(postdateNode.InnerText);
             return postdateNode;
         }
 
