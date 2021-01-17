@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['browser_19',['Browser',['../classConScrap_1_1Browser.html',1,'ConScrap']]]
+  ['browser_21',['Browser',['../classConScrap_1_1Browser.html',1,'ConScrap']]]
 ];
