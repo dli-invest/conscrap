@@ -45,6 +45,8 @@ namespace ConScrap
 \end{document}";
 
         // copied from SampleData/yahoopkk_comment.html
+
+        public const string yahooBasePath = "https://finance.yahoo.com";
         public class YahooXPaths
         {
             public const string postDateXPath = "//div/div[1]/span/span";

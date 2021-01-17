@@ -43,7 +43,8 @@ namespace ConScrap
                 .Replace("amp;", @"")
                 .Replace("&", @"\&");
         }
-        public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode, bool parseForTex = true) 
+        /// \todo ignore yahoo comment replies for now
+        public static YahooComment GetYahooComment(HtmlAgilityPack.HtmlNode commentNode, bool parseForTex = false) 
         {
             var postDateXPath = Constants.YahooXPaths.postDateXPath;
             var contentXPath = Constants.YahooXPaths.contentXPath;

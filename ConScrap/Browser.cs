@@ -6,6 +6,9 @@ namespace ConScrap
 {
     public class Browser
     {
+        /// <summary>
+        /// make selenium connection with browserstack
+        /// </summary>
         public static IWebDriver MkBrowser()
         {
 
@@ -41,6 +44,7 @@ namespace ConScrap
         public static string GetAllEntries(string ticker = "PKK.CN")
         {
             IWebDriver driver = Browser.MkBrowser();
+            // use base url from contant
             string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", ticker);
             driver.Navigate().GoToUrl(msgUrls);
             // driver.Navigate().GoToUrl(msgUrls);

@@ -7,11 +7,12 @@ using System.Collections.Generic;
 /// \todo scrap for only new reports and/or html format
 namespace ConScrap
 {
+    /// \todo get list of stocks
     public class ConScrap 
     {
-        public static List<Types.YahooComment> GetYahooComments()
+        public static List<Types.YahooComment> GetYahooComments(string ticker = "PKK.CN")
         {
-            string readText = Browser.GetAllEntries();
+            string readText = Browser.GetAllEntries(ticker);
             var htmlDoc = Parse.MkHtmlDoc(readText);
             var yahooData = Parse.ExtractYahooConversationsHtml(readText);
             // htmlDoc = Parse.MkHtmlDoc(yahooData.ToString());
