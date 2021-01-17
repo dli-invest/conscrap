@@ -3,6 +3,7 @@ using ConScrap;
 using System.Collections.Generic;
 using System.IO; 
 using System.Linq;
+using System.Threading.Tasks;
 // simple add to create csvs for scanning
 namespace ConScrap.Init
 {
@@ -36,15 +37,20 @@ namespace ConScrap.Init
                 }
                 // list data from csv if it exists
                 List<Types.YahooComment> comments = ConScrap.GetYahooComments(stock);
-                // distinct elements
-                List<Types.YahooComment> newComments = comments.Except(oldComments).ToList();
-                foreach (Types.YahooComment comment in newComments)
+
+                var countDiff = comments.Count - oldComments.Count;
+                // Console.WriteLine(newComments)
+                var differences = comments.Take(countDiff);
+                foreach (Types.YahooComment comment in differences)
                 {
-                    var embed = comment.mapCommentForDiscord(stockFile);
-                    var discordData = new Types.DiscordData {
-                        embeds = new List<Types.DiscordEmbed> {
-                            embed
-                        }
+                    Console.WriteLine(comment.PostDate);
+                    Console.WriteLine(comment.Content);
+                    Types.DiscordEmbed embed = comment.mapCommentForDiscord(stockFile);
+                    List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> {};
+                    embeds.Add(embed);
+                    Types.DiscordData discordData = new Types.DiscordData {
+                        content = "Test Doc",
+                        // embeds = embeds
                     };
                     await Discord.SendDiscord(webhook, discordData);
                 }

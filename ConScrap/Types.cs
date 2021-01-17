@@ -59,22 +59,22 @@ namespace ConScrap.Types
         public DiscordEmbed mapCommentForDiscord(string yahooUrl = "https://finance.yahoo.com")
         {
             var title = String.Format(@"{0} - {1}", Author, PostDate);
+            var fields = new List<DiscordField> {
+                new DiscordField {
+                    name = "likes",
+                    value = Likes.ToString(),
+                    inline = true
+                },
+                new DiscordField {
+                    name = "Dislikes",
+                    value = Dislikes.ToString(),
+                    inline = true
+                }
+            };
             return new DiscordEmbed { 
                 description = Content,
                 title = title,
-                url = yahooUrl,
-                fields = new List<DiscordField> {
-                    new DiscordField {
-                        name = "likes",
-                        value = Likes.ToString(),
-                        inline = true
-                    },
-                    new DiscordField {
-                        name = "Dislikes",
-                        value = Dislikes.ToString(),
-                        inline = true
-                    }
-                }
+                url = yahooUrl
             };
         }
     }
