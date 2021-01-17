@@ -57,16 +57,12 @@ namespace ConScrap
         {
             // sort by newest
             string showMoreXPath = Constants.YahooXPaths.showMoreXPath;
-            var element = driver.FindElement(By.XPath(showMoreXPath));
-            // Console.WriteLine(element);
-            // Console.WriteLine(element.GetAttribute("innerHTML"));
-            /// \todo make function out of xpath
             int numFailure = 0;
             for (int i = 0; i < 100; i++)
             {
                 try
                 {
-                    driver.FindElement(By.XPath(showMoreXPath));
+                    var element = driver.FindElement(By.XPath(showMoreXPath));
                     element.Click();
                     Thread.Sleep(300);
 
