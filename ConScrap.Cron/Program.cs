@@ -24,7 +24,10 @@ namespace ConScrap.Init
                     "IDK.CN",
                     "ART.V",
                     "BEE.CN",
-                    "CMC.CN"
+                    "CMC.CN",
+                    "PYR.TO",
+                    "DCM.TO",
+                    "DVN.CN"
             };
             // change logic after tested
             string webhook = Environment.GetEnvironmentVariable("DISCORD_WEBHOOK");
