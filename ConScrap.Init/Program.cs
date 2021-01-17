@@ -20,7 +20,11 @@ namespace ConScrap.Init
                 System.IO.Directory.CreateDirectory(dataPath);
 
             var stocks = new List<String> {
-                    "PKK.CN"
+                    "PKK.CN",
+                    "IDK.CN",
+                    "ART.V",
+                    "BEE.CN",
+                    "N.V"
             };
             // change logic after tested
             string webhook = Environment.GetEnvironmentVariable("DISCORD_WEBHOOK");
@@ -56,7 +60,7 @@ namespace ConScrap.Init
                         embeds = embeds
                     };
                     Dump(discordData);
-                    await Discord.SendDiscord(webhook, discordData);
+                    // await Discord.SendDiscord(webhook, discordData);
                 }
                 // send to discord
                 string csvEntries = Csv.GenerateReport(comments);

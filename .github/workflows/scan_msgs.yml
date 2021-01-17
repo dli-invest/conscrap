@@ -1,0 +1,44 @@
+name: Scan Yahoo Messages
+
+on:
+  push:
+    branches:
+      - 'main'
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '30 2 * * *'
+
+# reddit access for golang tests
+# since I am an single dev
+# what I care about is regression
+# making sure my code still works on the reddit api
+
+env: 
+  REMOTE_SELENIUM_KEY: ${{ secrets.REMOTE_SELENIUM_KEY }}
+  REMOTE_SELENIUM_USERNAME: ${{ secrets.REMOTE_SELENIUM_USERNAME }}
+  DISCORD_WEBHOOK: ${{ secrets.DISCORD_YAHOO_WEBHOOK}}
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Check Messages
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.101'
+      - run: dotnet run --project ConScrap.Cron
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        if: steps.commit.outputs.status == 'success'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
