@@ -36,19 +36,11 @@ namespace ConScrap
             return driver;
         }
 
-
         /// <summary>
-        ///     Get all Entries from yahoo finance by constantly clicking button.
+        ///     Click show by newest comments button
         /// </summary>
-        /// \todo figure out how to show replies
-        public static string GetAllEntries(string ticker = "PKK.CN")
+        public static void SortByNewestComments(IWebDriver driver)
         {
-            IWebDriver driver = Browser.MkBrowser();
-            // use base url from contant
-            string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", ticker);
-            driver.Navigate().GoToUrl(msgUrls);
-            // driver.Navigate().GoToUrl(msgUrls);
-            // add wait for element to load in v2
             Thread.Sleep(5000);
             // make into function
             string sortXPath = Constants.YahooXPaths.sortButtonXPath;
@@ -59,11 +51,13 @@ namespace ConScrap
             var createdEle = driver.FindElement(By.XPath(createdXPath));
             createdEle.Click();
             Thread.Sleep(1000);
+        }
 
+        public static void ShowAllComments(IWebDriver driver)
+        {
             // sort by newest
             string showMoreXPath = Constants.YahooXPaths.showMoreXPath;
             var element = driver.FindElement(By.XPath(showMoreXPath));
-
             // Console.WriteLine(element);
             // Console.WriteLine(element.GetAttribute("innerHTML"));
             /// \todo make function out of xpath
@@ -87,6 +81,21 @@ namespace ConScrap
                     }
                 }
             }
+        }
+
+        /// <summary>
+        ///     Get all Entries from yahoo finance by constantly clicking button.
+        /// </summary>
+        /// \todo figure out how to show replies
+        public static string GetAllEntries(string ticker = "PKK.CN")
+        {
+            IWebDriver driver = Browser.MkBrowser();
+            // use base url from contant
+            string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", ticker);
+            driver.Navigate().GoToUrl(msgUrls);
+            SortByNewestComments(driver);
+            ShowAllComments(driver);
+
             // click on all the replies elements
             // string repliesXPath = Constants.YahooXPaths.repliesXPath;
             // driver.FindElement(By.ClassName("replies-button")).Click();
