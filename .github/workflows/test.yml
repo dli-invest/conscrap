@@ -26,3 +26,16 @@ jobs:
           file: ./coverage.cobertura.xml # optional
           flags: unittests # optional
           verbose: true # optional (default = false)
+
+      - uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_CODE_STATUS_WEBHOOK }}
+          status: ${{ job.status }}
+          title: ${{github.repository}}
+          description: "Failed to Scan Run dli-invest/conscrap tests"
+          nofail: false
+          nocontext: false
+          noprefix: false
+          color: 0x0000ff
+          username: GitHub Actions

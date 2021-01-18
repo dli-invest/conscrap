@@ -42,3 +42,16 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
+      - uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_CODE_STATUS_WEBHOOK }}
+          status: ${{ job.status }}
+          title: ${{github.repository}}
+          description: "Failed to Scan Yahoo Finance Conversations"
+          nofail: false
+          nocontext: false
+          noprefix: false
+          color: 0x0000ff
+          username: GitHub Actions
