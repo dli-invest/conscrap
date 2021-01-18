@@ -57,9 +57,9 @@ namespace ConScrap.Types
 
         // mapping data from yahoo finance to discord
 
-        public DiscordEmbed mapCommentForDiscord(string yahooUrl = "https://finance.yahoo.com")
+        public DiscordEmbed mapCommentForDiscord(string yahooUrl = "https://finance.yahoo.com", string stock = "N/A")
         {
-            var title = String.Format(@"{0} - {1}", Author, PostDate);
+            var title = String.Format(@"{0} - {1} - {2}", stock, Author, PostDate);
             return new DiscordEmbed { 
                 description = Content,
                 title = title,

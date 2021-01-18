@@ -57,7 +57,7 @@ namespace ConScrap.Init
                 /// \todo batch comments in 10 to send off
                 foreach (Types.YahooComment comment in differences)
                 {
-                    Types.DiscordEmbed embed = comment.mapCommentForDiscord(msgUrls);
+                    Types.DiscordEmbed embed = comment.mapCommentForDiscord(msgUrls, stock);
                     List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> {};
                     embeds.Add(embed);
                     Types.DiscordData discordData = new Types.DiscordData {
