@@ -1,4 +1,6 @@
 
+using System.Collections.Generic;
+
 namespace ConScrap
 {
     /// <summary>
@@ -68,5 +70,16 @@ namespace ConScrap
 
             public const string sortByCreatedAtTextXPath = "//div[contain(., 'Newest Reactions')]";
         }
+
+        public static string[] stocks  = {
+                "PKK.CN",
+                "IDK.CN",
+                "ART.V",
+                "BEE.CN",
+                "CMC.CN",
+                "PYR.TO",
+                "DCM.TO",
+                "DVN.CN"
+        };
     }
 }

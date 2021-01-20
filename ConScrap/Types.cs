@@ -9,6 +9,8 @@ namespace ConScrap.Types
         public string Content { get; set; }
         public string Author { get; set; }
 
+        public string RelativeDate {get; set; }
+
         public int Likes { get; set; }
         public int Dislikes { get; set; }
         public static YahooComment FromCsv(string csvLine)
