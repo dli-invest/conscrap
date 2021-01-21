@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sortbynewestcomments_18',['SortByNewestComments',['../classConScrap_1_1Browser.html#aa565ececec7106d842f367a1e396804a',1,'ConScrap::Browser']]]
+  ['render_18',['Render',['../classConScrap_1_1Render.html',1,'ConScrap']]]
 ];
