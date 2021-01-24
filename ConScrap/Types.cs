@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using System.Threading;
 namespace ConScrap.Types
 {
     public class YahooComment
@@ -104,5 +104,16 @@ namespace ConScrap.Types
         public string name { get; set; }
         public string value { get; set; }
         public bool inline { get; set; }
+    }
+
+    public class FetchConfig
+    {
+        public string stock {get; set;}
+        public bool sendDiscord {get; set;}
+        public string dataPath {get; set;}
+
+        public SemaphoreSlim discordThrottler {get; set;}
+
+        public SemaphoreSlim seleniumThroller {get; set;}
     }
 }
