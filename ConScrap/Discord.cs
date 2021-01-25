@@ -21,7 +21,6 @@ namespace ConScrap
             };
 
             var response = await client.PostAsJsonAsync(webhook, data, options);
-            Console.WriteLine(response);
         }
     }
 }
