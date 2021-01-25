@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parse_31',['Parse',['../classConScrap_1_1Parse.html',1,'ConScrap']]]
+  ['fetchconfig_33',['FetchConfig',['../classConScrap_1_1Types_1_1FetchConfig.html',1,'ConScrap::Types']]]
 ];
