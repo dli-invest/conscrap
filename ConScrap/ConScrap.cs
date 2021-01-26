@@ -99,6 +99,7 @@ namespace ConScrap
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     return;
                 }
         }
