@@ -61,17 +61,34 @@ namespace ConScrap
                              .Select(v => Types.YahooComment.FromCsv(v))
                              .ToList();
             }
-            try
-            {
-                // list data from csv if it exists
-                List<Types.YahooComment> comments = ConScrap.GetYahooComments(stock);
+            // list data from csv if it exists
+            List<Types.YahooComment> comments = ConScrap.GetYahooComments(stock);
 
-                var countDiff = comments.Count - oldComments.Count;
-                // Console.WriteLine(newComments)
-                var differences = comments.Take(countDiff);
-                string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", stock);
-                /// \todo batch comments in 10 to send off
-                foreach (Types.YahooComment comment in differences)
+            var countDiff = comments.Count - oldComments.Count;
+            // Console.WriteLine(newComments)
+            var differences = comments.Take(countDiff);
+            string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", stock);
+            /// \todo batch comments in 10 to send off
+            foreach (Types.YahooComment comment in differences)
+            {
+                try
+                {
+                    await discordThrottler.WaitAsync();
+                    Types.DiscordEmbed embed = comment.mapCommentForDiscord(msgUrls, stock);
+                    List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> { };
+                    embeds.Add(embed);
+                    Types.DiscordData discordData = new Types.DiscordData
+                    {
+                        embeds = embeds
+                    };
+                    if (sendDiscord)
+                    {
+                        Dump(discordData);
+                        await Task.Delay(2000);
+                        await Discord.SendDiscord(webhook, discordData);
+                    }
+                }
+                finally
                 {
                     try
                     {
@@ -83,47 +100,25 @@ namespace ConScrap
                         {
                             embeds = embeds
                         };
+                        Dump(discordData);
                         if (sendDiscord)
                         {
-                            Dump(discordData);
                             await Task.Delay(2000);
                             await Discord.SendDiscord(webhook, discordData);
                         }
                     }
                     finally
                     {
-                        try
-                        {
-                            await discordThrottler.WaitAsync();
-                            Types.DiscordEmbed embed = comment.mapCommentForDiscord(msgUrls, stock);
-                            List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> { };
-                            embeds.Add(embed);
-                            Types.DiscordData discordData = new Types.DiscordData
-                            {
-                                embeds = embeds
-                            };
-                            Dump(discordData);
-                            if (sendDiscord)
-                            {
-                                await Task.Delay(2000);
-                                await Discord.SendDiscord(webhook, discordData);
-                            }
-                        }
-                        finally
-                        {
-                            // here we release the throttler immediately
-                            discordThrottler.Release();
-                        }
+                        // here we release the throttler immediately
+                        discordThrottler.Release();
                     }
-                    // send to discord
-                    string csvEntries = Csv.GenerateReport(comments);
-                    // diff list if exists
-                    System.IO.File.WriteAllText(stockFile, csvEntries);
                 }
-                catch (Exception e)
-            {
-                return;
+                // send to discord
+                string csvEntries = Csv.GenerateReport(comments);
+                // diff list if exists
+                System.IO.File.WriteAllText(stockFile, csvEntries);
             }
+            return;
         }
         public async static Task FetchStocks(bool sendDiscord = true, string dataPath = "data")
         {
