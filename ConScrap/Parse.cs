@@ -107,11 +107,9 @@ namespace ConScrap
             // add conditions
             int number;
             if (likesNode != null) {
-                // Console.WriteLine("Likes" + likesNode.InnerText);
                 Int32.TryParse(likesNode.InnerText, out number);
                 yahooComment.Likes = number;
                 number = 0;
-                // Console.WriteLine(likesNode.InnerHtml);
             }
             if (dislikesNode != null) {
                 Int32.TryParse(dislikesNode.InnerText, out number);
@@ -152,9 +150,6 @@ namespace ConScrap
                 {
                     var comment = GetYahooComment(node);
                     yahooComments.Add(comment);
-                    // Console.WriteLine("------------");
-                    // Console.WriteLine(node.InnerHtml);
-                    // Console.WriteLine("------------");
                 }
             }
             return yahooComments;
