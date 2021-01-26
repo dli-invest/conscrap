@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['parse_17',['Parse',['../classConScrap_1_1Parse.html',1,'ConScrap']]],
-  ['parsetemplate_18',['ParseTemplate',['../classConScrap_1_1Render.html#a00494e15575466e9339aaf939b07fc39',1,'ConScrap::Render']]],
-  ['processstock_19',['ProcessStock',['../classConScrap_1_1ConScrap.html#acf22526122b7e0698284f2f0b660fabb',1,'ConScrap::ConScrap']]]
+  ['parse_16',['Parse',['../classConScrap_1_1Parse.html',1,'ConScrap']]],
+  ['parsetemplate_17',['ParseTemplate',['../classConScrap_1_1Render.html#a00494e15575466e9339aaf939b07fc39',1,'ConScrap::Render']]]
 ];

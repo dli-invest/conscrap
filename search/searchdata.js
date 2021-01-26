@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "bcdefgmprsty",
   1: "bcdfpry",
   2: "c",
-  3: "efgmps",
+  3: "egmps",
   4: "t"
 };
 

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['generatereport_3c_20t_20_3e_42',['GenerateReport&lt; T &gt;',['../classConScrap_1_1Csv.html#a407dbccb6427cd76e43e5364e10857ea',1,'ConScrap::Csv']]],
-  ['getallentries_43',['GetAllEntries',['../classConScrap_1_1Browser.html#ae3c6ee5027846d7e1db3621ead5e4095',1,'ConScrap::Browser']]],
-  ['getyahoocomment_44',['GetYahooComment',['../classConScrap_1_1Parse.html#a12903167bc0988d2fcca9d5add6dee19',1,'ConScrap::Parse']]]
+  ['mkbrowser_41',['MkBrowser',['../classConScrap_1_1Browser.html#aa2a5497162c4cd9b4966ef3c82ea30bd',1,'ConScrap::Browser']]],
+  ['mkhtmldoc_42',['MkHtmlDoc',['../classConScrap_1_1Parse.html#a7fa51ef758b977a708652ab18e71effd',1,'ConScrap::Parse']]]
 ];
