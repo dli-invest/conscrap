@@ -79,8 +79,8 @@ namespace ConScrap
                         Types.DiscordData discordData = new Types.DiscordData {
                             embeds = embeds
                         };
-                        Dump(discordData);
                         if (sendDiscord) {
+                            Dump(discordData);
                             await Task.Delay(2000);
                             await Discord.SendDiscord(webhook, discordData);
                         }
@@ -115,7 +115,7 @@ namespace ConScrap
                 dataPath=dataPath,
                 discordThrottler=new SemaphoreSlim(30),
                 seleniumThroller=new SemaphoreSlim(10)  
-            };    
+            }; 
             foreach (string stock in stocks)
             {
                 await ProcessStock(stock, fetchConfig);

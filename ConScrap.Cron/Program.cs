@@ -14,7 +14,7 @@ namespace ConScrap.Init
         static async Task Main(string[] args)
         {
             string dataPath ="data"; // Your code goes here
-            await ConScrap.FetchStocks(true, dataPath);
+            await ConScrap.FetchStocks(false, dataPath);
         }
         private static void Dump(object o)
         {
