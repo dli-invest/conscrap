@@ -71,7 +71,7 @@ namespace ConScrap
                 {
                     Console.WriteLine(i + " Element does not exist! Stopping Loop");
                     numFailure++;
-                    if (numFailure > 5) 
+                    if (numFailure > 3) 
                     {
                         break;
                     }
