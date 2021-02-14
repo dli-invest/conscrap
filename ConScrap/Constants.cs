@@ -72,13 +72,13 @@ namespace ConScrap
         }
 
         public static string[] stocks  = {
-                // "PKK.CN",
-                // "IDK.CN",
-                // "ART.V",
-                // "BEE.CN",
-                // "CMC.CN",
-                // "PYR.TO",
-                // "DCM.TO",
+                "PKK.CN",
+                "IDK.CN",
+                "ART.V",
+                "BEE.CN",
+                "CMC.CN",
+                "PYR.TO",
+                "DCM.TO",
                 // "DVN.CN",
                 "NM.CN"
         };
