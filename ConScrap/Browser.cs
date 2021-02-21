@@ -39,18 +39,26 @@ namespace ConScrap
         /// <summary>
         ///     Click show by newest comments button
         /// </summary>
-        public static void SortByNewestComments(IWebDriver driver)
+        public static Boolean SortByNewestComments(IWebDriver driver)
         {
-            Thread.Sleep(5000);
-            // make into function
-            string sortXPath = Constants.YahooXPaths.sortButtonXPath;
-            var sortEle = driver.FindElement(By.XPath(sortXPath));
-            sortEle.Click();
-            Thread.Sleep(1000);
-            string createdXPath = Constants.YahooXPaths.sortByCreatedAtXPath;
-            var createdEle = driver.FindElement(By.XPath(createdXPath));
-            createdEle.Click();
-            Thread.Sleep(1000);
+            try
+            {
+                Thread.Sleep(5000);
+                // make into function
+                string sortXPath = Constants.YahooXPaths.sortButtonXPath;
+                var sortEle = driver.FindElement(By.XPath(sortXPath));
+                sortEle.Click();
+                Thread.Sleep(1000);
+                string createdXPath = Constants.YahooXPaths.sortByCreatedAtXPath;
+                var createdEle = driver.FindElement(By.XPath(createdXPath));
+                createdEle.Click();
+                Thread.Sleep(1000);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
 
         public static void ShowAllComments(IWebDriver driver)
@@ -69,10 +77,10 @@ namespace ConScrap
                 }
                 catch (NoSuchElementException)
                 {
-                    Console.WriteLine(i + " Element does not exist! Stopping Loop");
                     numFailure++;
-                    if (numFailure > 3) 
+                    if (numFailure > 3)
                     {
+                        Console.WriteLine(i + " Element does not exist! Stopping Loop");
                         break;
                     }
                 }
@@ -88,8 +96,14 @@ namespace ConScrap
             IWebDriver driver = Browser.MkBrowser();
             // use base url from contant
             string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", ticker);
+            Console.WriteLine(String.Format("Parsing messages for {0}", ticker));
             driver.Navigate().GoToUrl(msgUrls);
-            SortByNewestComments(driver);
+            Boolean success = SortByNewestComments(driver);
+            if (!success) 
+            {
+                Console.WriteLine(String.Format("Sort By newest Comments failed for {0}", ticker));
+                SortByNewestComments(driver)
+            }
             ShowAllComments(driver);
 
             // click on all the replies elements
