@@ -102,7 +102,7 @@ namespace ConScrap
             if (!success) 
             {
                 Console.WriteLine(String.Format("Sort By newest Comments failed for {0}", ticker));
-                SortByNewestComments(driver)
+                SortByNewestComments(driver);
             }
             ShowAllComments(driver);
 
