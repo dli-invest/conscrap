@@ -80,7 +80,7 @@ namespace ConScrap
                 "PYR.TO",
                 "DCM.TO",
                 // "DVN.CN",
-                "NM.CN"
+                // "NM.CN"
         };
     }
 }

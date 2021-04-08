@@ -14,9 +14,12 @@ namespace ConScrap.Cmd
     {
         static void Main(string[] args)
         {
+            var client = new StockTwitsClient();
+            stSymbolResp bserData = await client.GetData();
+            Console.WriteLine(bserData);
             // test to write html file
-            var pkkCn = Browser.GetAllEntries("PKK.CN");
-            System.IO.File.WriteAllText(@"WriteText.txt", pkkCn);
+            // var pkkCn = Browser.GetAllEntries("PKK.CN");
+            // System.IO.File.WriteAllText(@"WriteText.txt", pkkCn);
             // var yahooComments = ConScrap.GetYahooComments();
             // var yahooRpt = ConScrap.MkTexRpt(yahooComments);
             // // save report to tex file

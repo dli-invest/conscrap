@@ -42,6 +42,7 @@ namespace ConScrap
             return rpt;
         }
 
+        // add timeout per stock
         public async static Task ProcessStock(string stock, Types.FetchConfig fetchConfig)
         {
             var dataPath = fetchConfig.dataPath;
