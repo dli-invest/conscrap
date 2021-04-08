@@ -91,28 +91,7 @@ namespace ConScrap
                 }
                 finally
                 {
-                    try
-                    {
-                        await discordThrottler.WaitAsync();
-                        Types.DiscordEmbed embed = comment.mapCommentForDiscord(msgUrls, stock);
-                        List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> { };
-                        embeds.Add(embed);
-                        Types.DiscordData discordData = new Types.DiscordData
-                        {
-                            embeds = embeds
-                        };
-                        Dump(discordData);
-                        if (sendDiscord)
-                        {
-                            await Task.Delay(2000);
-                            await Discord.SendDiscord(webhook, discordData);
-                        }
-                    }
-                    finally
-                    {
-                        // here we release the throttler immediately
-                        discordThrottler.Release();
-                    }
+                    discordThrottler.Release();
                 }
                 // send to discord
                 string csvEntries = Csv.GenerateReport(comments);
@@ -139,8 +118,8 @@ namespace ConScrap
             {
                 sendDiscord = sendDiscord,
                 dataPath = dataPath,
-                discordThrottler = new SemaphoreSlim(30),
-                seleniumThroller = new SemaphoreSlim(10)
+                discordThrottler = discordThrottler,
+                seleniumThroller = seleniumThroller
             };
             foreach (string stock in stocks)
             {
