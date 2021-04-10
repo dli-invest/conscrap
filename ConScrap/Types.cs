@@ -133,6 +133,9 @@ namespace ConScrap.Types
         public static stMessage FromCsv(string csvLine)
         {
             string[] values = csvLine.Split(',');
+            if (values.Length == 0) {
+                return new stMessage();
+            }
             stMessage twitComment = new stMessage();
             twitComment.id = Convert.ToInt64(values[0]);
             twitComment.body = Convert.ToString(values[1]);

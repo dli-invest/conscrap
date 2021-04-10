@@ -195,6 +195,9 @@ namespace ConScrap
             {
                 try
                 {
+                    if (comment.body == null) {
+                        continue;
+                    }
                     await discordThrottler.WaitAsync();
                     Types.DiscordEmbed embed = comment.mapCommentForDiscord(stock);
                     List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> { };
