@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.0.101'
-      - run: dotnet run --project ConScrap.Cron
+      - run: dotnet run --project ConScrap.TwitCmd
       - name: Commit files
         id: commit
         run: |
