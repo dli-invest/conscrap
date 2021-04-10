@@ -126,7 +126,7 @@ namespace ConScrap.Types
 
     public class stMessage
     {
-        public string id {get; set;}
+        public Int64 id {get; set;}
         public string body {get; set;}
         public string created_at {get; set;}
 
@@ -134,7 +134,7 @@ namespace ConScrap.Types
         {
             string[] values = csvLine.Split(',');
             stMessage twitComment = new stMessage();
-            twitComment.id = Convert.ToString(values[0]);
+            twitComment.id = Convert.ToInt64(values[0]);
             twitComment.body = Convert.ToString(values[1]);
             twitComment.created_at = Convert.ToString(values[2]);
             return twitComment;
