@@ -1,4 +1,4 @@
-name: Scan Yahoo Messages
+name: Fixing issues
 
 on:
   push:
