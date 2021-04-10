@@ -158,7 +158,6 @@ namespace ConScrap
         {
             var dataPath = fetchConfig.dataPath;
             var discordThrottler = fetchConfig.discordThrottler;
-            var seleniumThroller = fetchConfig.seleniumThroller;
             var sendDiscord = fetchConfig.sendDiscord;
             string webhook = Environment.GetEnvironmentVariable("DISCORD_WEBHOOK");
             string stockFile = String.Format(@"{0}/{1}.csv", dataPath, stock);
