@@ -81,6 +81,7 @@ namespace ConScrap.Types
             };
         }
     }
+    
 
     // implement discord data
     public class DiscordData
@@ -115,5 +116,40 @@ namespace ConScrap.Types
         public SemaphoreSlim discordThrottler {get; set;}
 
         public SemaphoreSlim seleniumThroller {get; set;}
+    }
+
+    public class stSymbolResp
+    {
+        public object response { get; set; }
+        public List<stMessage> messages { get; set; }
+    }
+
+    public class stMessage
+    {
+        public int id {get; set;}
+        public string body {get; set;}
+        public string created_at {get; set;}
+
+        public static stMessage FromCsv(string csvLine)
+        {
+            string[] values = csvLine.Split(',');
+            stMessage twitComment = new stMessage();
+            twitComment.id = Convert.ToInt16(values[0]);
+            twitComment.body = Convert.ToString(values[1]);
+            twitComment.created_at = Convert.ToString(values[2]);
+            return twitComment;
+        }
+
+        public DiscordEmbed mapCommentForDiscord(string stock = "N/A")
+        {
+            string twitUrl = "https://stocktwits.com/symbol";
+            var title = String.Format(@"StockTwits - {0}", stock);
+            var symbolUrl = String.Format(@"{0}/{1}.json", twitUrl, stock);
+            return new DiscordEmbed { 
+                description = body,
+                title = title,
+                url = symbolUrl
+            };
+        }
     }
 }

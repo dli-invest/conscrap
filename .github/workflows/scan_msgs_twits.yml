@@ -1,0 +1,59 @@
+name: Fixing issues
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'bugfix/fix-scrapping'
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '45 0-19/2 * * *'
+
+# reddit access for golang tests
+# since I am an single dev
+# what I care about is regression
+# making sure my code still works on the reddit api
+
+env: 
+  REMOTE_SELENIUM_KEY: ${{ secrets.REMOTE_SELENIUM_KEY }}
+  REMOTE_SELENIUM_USERNAME: ${{ secrets.REMOTE_SELENIUM_USERNAME }}
+  DISCORD_WEBHOOK: ${{ secrets.DISCORD_YAHOO_WEBHOOK}}
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Check Messages
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.101'
+      - run: dotnet run --project ConScrap.TwitCmd
+      - name: Commit files
+        id: commit
+        run: |
+          echo \n >> CRON.md
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Add changes"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_CODE_STATUS_WEBHOOK }}
+          status: ${{ job.status }}
+          title: ${{github.repository}}
+          description: "Failed to Scan Yahoo Finance Conversations"
+          nofail: false
+          nocontext: false
+          noprefix: false
+          color: 0x0000ff
+          username: GitHub Actions

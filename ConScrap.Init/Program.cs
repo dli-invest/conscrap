@@ -14,8 +14,7 @@ namespace ConScrap.Init
         static async Task Main(string[] args)
         {
             string dataPath ="data"; // Your code goes here
-            // dont send data to discord
-            await ConScrap.FetchStocks(false, dataPath);
+            await ConScrap.FetchStocks(true, dataPath);
 
             // // \todo make sure csvs can be copied over correctly
             // // algorithm to add new entries, load existing entries from csv

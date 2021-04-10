@@ -3,6 +3,7 @@ using ConScrap;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Threading.Tasks;
 /// \todo add logic to save results to folder
 /// \todo CI/CD job
 /// \todo figure out emoji support
@@ -12,11 +13,14 @@ namespace ConScrap.Cmd
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
+            var client = new StockTwitsClient();
+            var bserData = await client.GetData("DMYI");
+            Console.WriteLine(bserData);
             // test to write html file
-            var pkkCn = Browser.GetAllEntries("PKK.CN");
-            System.IO.File.WriteAllText(@"WriteText.txt", pkkCn);
+            // var pkkCn = Browser.GetAllEntries("PKK.CN");
+            // System.IO.File.WriteAllText(@"WriteText.txt", pkkCn);
             // var yahooComments = ConScrap.GetYahooComments();
             // var yahooRpt = ConScrap.MkTexRpt(yahooComments);
             // // save report to tex file

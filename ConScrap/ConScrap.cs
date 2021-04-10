@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http;
 /// \todo save report to file
 /// \todo save to csv or faunadb
 /// \todo improved cli interface
@@ -42,6 +43,7 @@ namespace ConScrap
             return rpt;
         }
 
+        // add timeout per stock
         public async static Task ProcessStock(string stock, Types.FetchConfig fetchConfig)
         {
             var dataPath = fetchConfig.dataPath;
@@ -124,6 +126,96 @@ namespace ConScrap
             {
                 await ProcessStock(stock, fetchConfig);
             }
+        }
+
+        // stock twits functions
+        public async static Task twitFetchStocks(bool sendDiscord = true, string dataFolder = "data/twits") 
+        {
+            bool exists = System.IO.Directory.Exists(dataFolder);
+
+            if (!exists)
+                System.IO.Directory.CreateDirectory(dataFolder);
+
+            var stocks = Constants.tstocks;
+            /// \todo rate limit selenium instances to 10
+            /// see bser logic
+            /// \todo skip failure tickers
+            SemaphoreSlim discordThrottler = new SemaphoreSlim(30, 30);
+            SemaphoreSlim seleniumThroller = new SemaphoreSlim(5);
+            // Console.WriteLine(fetchConfig);
+            Types.FetchConfig fetchConfig = new Types.FetchConfig
+            {
+                sendDiscord = sendDiscord,
+                dataPath = dataFolder,
+                discordThrottler = discordThrottler,
+                seleniumThroller=seleniumThroller
+            };
+            foreach (string stock in stocks)
+            {
+                await twitProcessStock(stock, fetchConfig);
+            }
+        }
+
+        public async static Task twitProcessStock(string stock, Types.FetchConfig fetchConfig)
+        {
+            var dataPath = fetchConfig.dataPath;
+            var discordThrottler = fetchConfig.discordThrottler;
+            var sendDiscord = fetchConfig.sendDiscord;
+            string webhook = Environment.GetEnvironmentVariable("DISCORD_WEBHOOK");
+            string stockFile = String.Format(@"{0}/{1}.csv", dataPath, stock);
+            StockTwitsClient TwitsClient = new StockTwitsClient();
+            Types.stSymbolResp twitsResp = await TwitsClient.GetData(stock);
+            List<Types.stMessage> oldComments = new List<Types.stMessage> { };
+            if (File.Exists(stockFile))
+            {
+                // load stock file into variable
+                oldComments = File.ReadAllLines(stockFile)
+                             // skip header
+                             .Skip(1)
+                             .Select(v => Types.stMessage.FromCsv(v))
+                             .ToList();
+            }
+            List<Types.stMessage> newComments = twitsResp.messages;
+            List<Types.stMessage> finalComments = oldComments.Concat(newComments)
+                .GroupBy(x=>x.id)
+                .Where(x=>x.Count() == 1)
+                .Select(x=>x.FirstOrDefault())
+                .ToList(); 
+
+            var listItemsToDiscord = newComments.Where(p => oldComments.All(p2 => p2.id != p.id));
+            // parameterize sender
+            // too lazy
+            // side project
+            // lower quality acceptable
+            // who reads comments anyway
+            foreach (Types.stMessage comment in listItemsToDiscord)
+            {
+                try
+                {
+                    await discordThrottler.WaitAsync();
+                    Types.DiscordEmbed embed = comment.mapCommentForDiscord(stock);
+                    List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> { };
+                    embeds.Add(embed);
+                    Types.DiscordData discordData = new Types.DiscordData
+                    {
+                        embeds = embeds
+                    };
+                    if (sendDiscord)
+                    {
+                        Dump(discordData);
+                        await Task.Delay(2000);
+                        await Discord.SendDiscord(webhook, discordData);
+                    }
+                }
+                finally
+                {
+                    discordThrottler.Release();
+                }
+            }
+            string csvEntries = Csv.GenerateReport(finalComments);
+            // diff list if exists
+            System.IO.File.WriteAllText(stockFile, csvEntries);
+            // diff list with storage
         }
 
         private static void Dump(object o)

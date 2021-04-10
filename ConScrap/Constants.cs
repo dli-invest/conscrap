@@ -84,5 +84,11 @@ namespace ConScrap
                 // "DVN.CN",
                 // "NM.CN"
         };
+        // stock twits stocks
+        public static string[] tstocks = {
+            "DMYI",
+            "PKKFF",
+            "IDKFF"
+        };
     }
 }
