@@ -16,7 +16,7 @@ namespace ConScrap
     /// \todo get list of stocks
     public class ConScrap
     {
-        public static List<Types.YahooComment> GetYahooComments(string ticker = "PKK.CN")
+        public static List<Types.YahooComment> GetYahooComments(string ticker = "CMC.CN")
         {
             string readText = Browser.GetAllEntries(ticker);
             var htmlDoc = Parse.MkHtmlDoc(readText);
