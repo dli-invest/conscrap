@@ -133,16 +133,18 @@ namespace ConScrap.Types
         public static stMessage FromCsv(string csvLine)
         {
             string[] values = csvLine.Split(',');
-            if (values.Length < 2) {
+            try {
+                 stMessage twitComment = new stMessage();
+                twitComment.id = Convert.ToInt64(values[0]);
+                twitComment.body = Convert.ToString(values[1]);
+                if(values.Length > 2) {
+                    twitComment.created_at = Convert.ToString(values[2]);
+                }
+                return twitComment;
+            } catch (System.FormatException e) {
                 return new stMessage();
             }
-            stMessage twitComment = new stMessage();
-            twitComment.id = Convert.ToInt64(values[0]);
-            twitComment.body = Convert.ToString(values[1]);
-            if(values.Length > 2) {
-                twitComment.created_at = Convert.ToString(values[2]);
-            }
-            return twitComment;
+           
         }
 
         public DiscordEmbed mapCommentForDiscord(string stock = "N/A")
