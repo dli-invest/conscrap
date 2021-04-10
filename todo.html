@@ -74,7 +74,7 @@ $(function() {
 <p class="interdd">improved cli interface </p>
 <p class="interdd">exe with working env vars </p>
 <p class="interdd">scrap for only new reports and/or html format </p>
-<p class="enddd"><a class="anchor" id="_todo000007"></a>implement discord module simple functions that map YahooComments to Data points  </p>
+<p class="enddd"><a class="anchor" id="_todo000009"></a>implement discord module simple functions that map YahooComments to Data points  </p>
 </dd>
 <dt>Member <a class="el" href="classConScrap_1_1Browser.html#ae3c6ee5027846d7e1db3621ead5e4095">ConScrap.Browser.GetAllEntries</a>  (string ticker="PKK.CN")</dt>
 <dd><a class="anchor" id="_todo000001"></a>figure out how to show replies  </dd>
@@ -86,10 +86,18 @@ $(function() {
 </dd>
 <dt>Member <a class="el" href="classConScrap_1_1ConScrap.html#acf22526122b7e0698284f2f0b660fabb">ConScrap.ConScrap.ProcessStock</a>  (string stock, <a class="el" href="classConScrap_1_1Types_1_1FetchConfig.html">Types.FetchConfig</a> fetchConfig)</dt>
 <dd><a class="anchor" id="_todo000004"></a>batch comments in 10 to send off  </dd>
+<dt>Member <a class="el" href="classConScrap_1_1ConScrap.html#a28e0e5cf8adedb92ed467768646dbcda">ConScrap.ConScrap.twitFetchStocks</a>  (bool sendDiscord=true, string dataFolder="data/twits")</dt>
+<dd><p class="startdd"><a class="anchor" id="_todo000007"></a>rate limit selenium instances to 10 see bser logic </p>
+<p class="enddd"><a class="anchor" id="_todo000008"></a>skip failure tickers  </p>
+</dd>
 <dt>Member <a class="el" href="classConScrap_1_1Parse.html#a6952e2f1639f2fcec9287b8dc4f0adb8">ConScrap.Parse.ExtractYahooConversationsHtml</a>  (string yahooHtml)</dt>
-<dd><a class="anchor" id="_todo000008"></a>Mark urls in tex using \url{} after removing characters  </dd>
+<dd><a class="anchor" id="_todo000010"></a>Mark urls in tex using \url{} after removing characters  </dd>
 <dt>Member <a class="el" href="classConScrap_1_1Parse.html#a12903167bc0988d2fcca9d5add6dee19">ConScrap.Parse.GetYahooComment</a>  (HtmlAgilityPack.HtmlNode commentNode, bool parseForTex=false)</dt>
-<dd><a class="anchor" id="_todo000009"></a>ignore yahoo comment replies for now </dd>
+<dd><a class="anchor" id="_todo000011"></a>ignore yahoo comment replies for now  </dd>
+<dt>Class <a class="el" href="classConScrap_1_1StockTwitsClient.html">ConScrap.StockTwitsClient</a>  </dt>
+<dd><a class="anchor" id="_todo000012"></a>label this package as v1 (intend to support v2 as a hobby)  </dd>
+<dt>Member <a class="el" href="classConScrap_1_1StockTwitsClient.html#a2c626b18b1f76ce40934a700ff2c8fc1">ConScrap.StockTwitsClient.StockTwitsClient</a>  (int rateLimit=200)</dt>
+<dd><a class="anchor" id="_todo000013"></a>TODO figure out how to handle urls when v2 comes out </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

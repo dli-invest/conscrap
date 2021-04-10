@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['yahoocomment_36',['YahooComment',['../classConScrap_1_1Types_1_1YahooComment.html',1,'ConScrap::Types']]],
-  ['yahooxpaths_37',['YahooXPaths',['../classConScrap_1_1Constants_1_1YahooXPaths.html',1,'ConScrap::Constants']]]
+  ['stmessage_41',['stMessage',['../classConScrap_1_1Types_1_1stMessage.html',1,'ConScrap::Types']]],
+  ['stocktwitsclient_42',['StockTwitsClient',['../classConScrap_1_1StockTwitsClient.html',1,'ConScrap']]],
+  ['stsymbolresp_43',['stSymbolResp',['../classConScrap_1_1Types_1_1stSymbolResp.html',1,'ConScrap::Types']]]
 ];
