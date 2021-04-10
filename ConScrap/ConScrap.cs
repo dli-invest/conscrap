@@ -177,7 +177,7 @@ namespace ConScrap
             }
             List<Types.stMessage> newComments = twitsResp.messages;
             if(newComments.Count == 0) {
-                Console.WriteLine("ERROR")
+                Console.WriteLine("ERROR");
             }
             List<Types.stMessage> finalComments = oldComments.Concat(newComments)
                 .GroupBy(x=>x.id)
