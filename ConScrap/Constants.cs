@@ -79,6 +79,8 @@ namespace ConScrap
                 "CMC.CN",
                 "PYR.TO",
                 "DCM.TO",
+                "PAI.V",
+                // "N.V"
                 // "DVN.CN",
                 // "NM.CN"
         };

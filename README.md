@@ -11,6 +11,13 @@ dotnet new classlib -o ConScrap.Render
 dotnet new classlib -o ConScrap.Tests
 ```
 
+After run 
+
+```
+dotnet tool install -g mlnet
+```
+
+for mlnet
 ## Todo
 
 - [ ] Discord Integration (send yahoo comments that meet criteria to discord)
