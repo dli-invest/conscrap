@@ -141,12 +141,14 @@ namespace ConScrap
             /// see bser logic
             /// \todo skip failure tickers
             SemaphoreSlim discordThrottler = new SemaphoreSlim(30, 30);
+            SemaphoreSlim seleniumThroller = new SemaphoreSlim(5);
             // Console.WriteLine(fetchConfig);
             Types.FetchConfig fetchConfig = new Types.FetchConfig
             {
                 sendDiscord = sendDiscord,
                 dataPath = dataFolder,
-                discordThrottler = discordThrottler
+                discordThrottler = discordThrottler,
+                seleniumThroller=seleniumThroller
             };
             foreach (string stock in stocks)
             {
