@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 /// \todo figure out emoji support
 /// \todo publish package or exe to github
 /// \todo logging to log file
-namespace ConScrap.Cmd
+namespace ConScrap.TwitCmd
 {
     class Program
     {
