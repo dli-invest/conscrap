@@ -136,7 +136,7 @@ namespace ConScrap
             if (!exists)
                 System.IO.Directory.CreateDirectory(dataFolder);
 
-            var stocks = Constants.stocks;
+            var stocks = Constants.tstocks;
             /// \todo rate limit selenium instances to 10
             /// see bser logic
             /// \todo skip failure tickers
