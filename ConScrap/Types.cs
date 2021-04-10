@@ -136,7 +136,9 @@ namespace ConScrap.Types
             stMessage twitComment = new stMessage();
             twitComment.id = Convert.ToInt64(values[0]);
             twitComment.body = Convert.ToString(values[1]);
-            twitComment.created_at = Convert.ToString(values[2]);
+            if(values.Length > 2) {
+                twitComment.created_at = Convert.ToString(values[2]);
+            }
             return twitComment;
         }
 
