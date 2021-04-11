@@ -1,4 +1,7 @@
 [![codecov](https://codecov.io/gh/dli-invest/conscrap/branch/main/graph/badge.svg?token=1Tlyaj0OO4)](https://codecov.io/gh/dli-invest/conscrap)
+
+Force overrunning the hardcoded files was a bad idea lol.
+
 # conscrap
 conversation scrapper for ceo, yahoo finance and eventually stockhouse
 
