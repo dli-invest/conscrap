@@ -64,7 +64,12 @@ namespace ConScrap
                              .ToList();
             }
             // list data from csv if it exists
-            List<Types.YahooComment> comments = ConScrap.GetYahooComments(stock);
+            List<Types.YahooComment> comments = new List<Types.YahooComment>{};
+            try {
+                comments = ConScrap.GetYahooComments(stock);
+            } catch(Exception e) {
+                return;
+            }
 
             var countDiff = comments.Count - oldComments.Count;
             // Console.WriteLine(newComments)
