@@ -178,6 +178,7 @@ namespace ConScrap
             List<Types.stMessage> newComments = twitsResp.messages;
             if(newComments.Count == 0) {
                 Console.WriteLine("ERROR");
+                return;
             }
             List<Types.stMessage> finalComments = oldComments.Concat(newComments)
                 .GroupBy(x=>x.id)
@@ -185,7 +186,9 @@ namespace ConScrap
                 .Select(x=>x.FirstOrDefault())
                 .ToList(); 
 
-            var listItemsToDiscord = newComments.Where(p => oldComments.All(p2 => p2.id != p.id));
+            var countDiff = finalComments.Count - oldComments.Count;
+            // Console.WriteLine(newComments)
+            var listItemsToDiscord = newComments.Take(countDiff);
             // parameterize sender
             // too lazy
             // side project
