@@ -1,4 +1,4 @@
-name: Fixing issues
+name: StockTwits
 
 on:
   push:
