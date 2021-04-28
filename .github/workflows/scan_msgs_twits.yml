@@ -7,7 +7,7 @@ on:
       - 'bugfix/fix-scrapping'
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '45 0-19/2 * * *'
+    - cron: '45 5 * * *'
 
 # reddit access for golang tests
 # since I am an single dev

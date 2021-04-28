@@ -190,40 +190,38 @@ namespace ConScrap
                 .Where(x=>x.Count() == 1)
                 .Select(x=>x.FirstOrDefault())
                 .ToList(); 
-
-            var countDiff = finalComments.Count - oldComments.Count;
-            // Console.WriteLine(newComments)
-            var listItemsToDiscord = newComments.Take(countDiff);
-            // parameterize sender
-            // too lazy
-            // side project
-            // lower quality acceptable
-            // who reads comments anyway
-            foreach (Types.stMessage comment in listItemsToDiscord)
+            DateTime today = DateTime.Today;
+            foreach (Types.stMessage comment in newComments)
             {
-                try
-                {
-                    if (comment.body == null) {
-                        continue;
-                    }
-                    await discordThrottler.WaitAsync();
-                    Types.DiscordEmbed embed = comment.mapCommentForDiscord(stock);
-                    List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> { };
-                    embeds.Add(embed);
-                    Types.DiscordData discordData = new Types.DiscordData
+                DateTime created_at = DateTime.Parse(comment.created_at);
+                // if post + 24 hours (post happened today)
+                // send to discord
+                if (created_at.AddHours(24) > today) {
+                    try
                     {
-                        embeds = embeds
-                    };
-                    if (sendDiscord)
-                    {
-                        Dump(discordData);
-                        await Task.Delay(2000);
-                        await Discord.SendDiscord(webhook, discordData);
+                        //
+                        if (comment.body == null) {
+                            continue;
+                        }
+                        await discordThrottler.WaitAsync();
+                        Types.DiscordEmbed embed = comment.mapCommentForDiscord(stock);
+                        List<Types.DiscordEmbed> embeds = new List<Types.DiscordEmbed> { };
+                        embeds.Add(embed);
+                        Types.DiscordData discordData = new Types.DiscordData
+                        {
+                            embeds = embeds
+                        };
+                        if (sendDiscord)
+                        {
+                            Dump(discordData);
+                            await Task.Delay(2000);
+                            await Discord.SendDiscord(webhook, discordData);
+                        }
                     }
-                }
-                finally
-                {
-                    discordThrottler.Release();
+                    finally
+                    {
+                        discordThrottler.Release();
+                    }
                 }
             }
             string csvEntries = Csv.GenerateReport(finalComments);
