@@ -97,6 +97,8 @@ namespace ConScrap.Types
         public string title { get; set; }
 
         public List<DiscordField> fields { get; set; }
+
+        public string timestamp {get; set;}
         // public string timestamp { get; set; }
     }
 
@@ -152,11 +154,16 @@ namespace ConScrap.Types
             string twitUrl = "https://stocktwits.com/symbol";
             var title = String.Format(@"StockTwits - {0}", stock);
             var symbolUrl = String.Format(@"{0}/{1}.json", twitUrl, stock);
-            return new DiscordEmbed { 
+            var embed = new DiscordEmbed { 
                 description = body,
                 title = title,
                 url = symbolUrl
             };
+
+            if (created_at != null) {
+                embed.timestamp = created_at;
+            }
+            return embed;
         }
     }
 }
