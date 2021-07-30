@@ -74,12 +74,13 @@ namespace ConScrap
         public static string[] stocks  = {
                 "PKK.CN",
                 "IDK.CN",
-                "ART.V",
+                // "ART.V",
                 "BEE.CN",
                 "CMC.CN",
-                "PYR.TO",
+                // "PYR.TO",
                 "DCM.TO",
-                "PAI.V",
+                "VPH.CN",
+                // "PAI.V",
                 // "N.V"
                 // "DVN.CN",
                 // "NM.CN"
@@ -88,7 +89,8 @@ namespace ConScrap
         public static string[] tstocks = {
             "DMYI",
             "PKKFF",
-            "IDKFF"
+            "IDKFF",
+            "BEVVF"
         };
     }
 }
