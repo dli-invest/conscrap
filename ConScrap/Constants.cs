@@ -88,7 +88,7 @@ namespace ConScrap
         // stock twits stocks
         public static string[] tstocks = {
             "DMYI",
-            "PKKFF",
+            "TNT",
             "IDKFF",
             "BEVVF"
         };
