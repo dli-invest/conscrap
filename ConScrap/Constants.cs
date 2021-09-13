@@ -80,6 +80,9 @@ namespace ConScrap
                 // "PYR.TO",
                 "DCM.TO",
                 "VPH.CN",
+                "DM.V",
+                "ACT.CN",
+                "ACDC.CN"
                 // "PAI.V",
                 // "N.V"
                 // "DVN.CN",
