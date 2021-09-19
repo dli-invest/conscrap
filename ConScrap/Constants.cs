@@ -82,7 +82,8 @@ namespace ConScrap
                 "VPH.CN",
                 "DM.V",
                 "ACT.CN",
-                "ACDC.CN"
+                "ACDC.CN",
+                "POND.V"
                 // "PAI.V",
                 // "N.V"
                 // "DVN.CN",
