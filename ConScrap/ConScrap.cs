@@ -181,7 +181,7 @@ namespace ConScrap
                              .ToList();
             }
             List<Types.stMessage> newComments = twitsResp.messages;
-            if(newComments.Count == 0) {
+            if(newComments == null || newComments.Count == 0) {
                 Console.WriteLine("ERROR");
                 return;
             }
