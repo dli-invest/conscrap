@@ -94,7 +94,10 @@ namespace ConScrap
             "DMYI",
             "TNT",
             "IDKFF",
-            "BEVVF"
+            "BEVVF",
+            "NHHHF",
+            "POND.V"
+              
         };
     }
 }
