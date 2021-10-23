@@ -76,7 +76,7 @@ namespace ConScrap
                 "IDK.CN",
                 // "ART.V",
                 "BEE.CN",
-                "CMC.CN",
+                "CMC.V",
                 // "PYR.TO",
                 "DCM.TO",
                 "VPH.CN",
