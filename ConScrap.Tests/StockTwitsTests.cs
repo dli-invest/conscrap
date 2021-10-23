@@ -30,7 +30,7 @@ namespace ConScrap.Tests
         public void TestTwitComments()
         {
             var client = new StockTwitsClient();
-            var bserData = client.GetData("DMYI");
+            var bserData = client.GetData("IONQ");
         }
     }
 }
