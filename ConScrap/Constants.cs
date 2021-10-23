@@ -96,8 +96,8 @@ namespace ConScrap
             "IDKFF",
             "BEVVF",
             "NHHHF",
-            "POND.V"
-              
+            "POND.V",
+            "PQEFF"
         };
     }
 }
