@@ -153,7 +153,7 @@ namespace ConScrap.Types
         {
             string twitUrl = "https://stocktwits.com/symbol";
             var title = String.Format(@"StockTwits - {0}", stock);
-            var symbolUrl = String.Format(@"{0}/{1}.json", twitUrl, stock);
+            var symbolUrl = String.Format(@"{0}/{1}", twitUrl, stock);
             var embed = new DiscordEmbed { 
                 description = body,
                 title = title,
