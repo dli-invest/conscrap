@@ -78,6 +78,8 @@ namespace ConScrap
                 "BEE.CN",
                 "CMC.V",
                 // "PYR.TO",
+                "ZIM",
+                "SBLK",
                 "DCM.TO",
                 "VPH.CN",
                 "DM.V",
@@ -96,8 +98,8 @@ namespace ConScrap
             "IDKFF",
             "BEVVF",
             "NHHHF",
-            "POND.V",
-            "PQEFF"
+            "POND.V"
+            // "PQEFF"
         };
     }
 }
