@@ -80,6 +80,7 @@ namespace ConScrap
                 // "PYR.TO",
                 "ZIM",
                 "SBLK",
+                "UAN",
                 "DCM.TO",
                 "VPH.CN",
                 "DM.V",
@@ -93,8 +94,10 @@ namespace ConScrap
         };
         // stock twits stocks
         public static string[] tstocks = {
-            "DMYI",
-            "TNT",
+            "IONQ",
+            "UAN",
+            "ZIM",
+            "SBLK",
             "IDKFF",
             "BEVVF",
             "NHHHF",
