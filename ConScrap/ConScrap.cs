@@ -68,6 +68,7 @@ namespace ConScrap
             try {
                 comments = ConScrap.GetYahooComments(stock);
             } catch(Exception e) {
+                Console.WriteLine(e);
                 return;
             }
 
