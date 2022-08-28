@@ -2,11 +2,11 @@ using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace ConScrap
 {
 
-    
     public class Browser
     {
         /// <summary>
@@ -22,19 +22,17 @@ namespace ConScrap
             if (key == null) throw new InvalidOperationException("Missing REMOTE_SELENIUM_KEY env var");
             // get environment variables for browserstack
             IWebDriver driver;
-            OpenQA.Selenium.Chrome.ChromeOptions options = new OpenQA.Selenium.Chrome.ChromeOptions();
-            // options.AddAdditionalCapability("os_version", "10", true);
-            // options.AddAdditionalCapability("resolution", "1920x1080", true);
-            // options.AddAdditionalCapability("browser", "Chrome", true);
-            // options.AddAdditionalCapability("browser_version", "latest", true);
-            options.AddAdditionalCapability("os", "Windows", true);
-            options.AddAdditionalCapability("name", "BStack-[C_sharp] Sample Test", true); // test name
-            options.AddAdditionalCapability("build", "BStack Build Number 1", true); // CI/CD job or build name
-            options.AddAdditionalCapability("browserstack.user", username, true);
-            options.AddAdditionalCapability("browserstack.key", key, true);
-
+            DriverOptions options = new OpenQA.Selenium.Chrome.ChromeOptions();
+            options.AddAdditionalOption("os_version", "11");
+            options.AddAdditionalOption("resolution", "1920x1080");
+            options.AddAdditionalOption("browser", "Chrome");
+            options.AddAdditionalOption("browser_version", "latest");
+            // caps.Add("os", "Windows");
+            // caps.Add("name", "BStack-[C_sharp] Sample Test"); // test name
+            // caps.Add("buildName", "BStack Build Number 1"); // CI/CD job or build name
+            string url = String.Format("https://{0}:{1}@hub-cloud.browserstack.com/wd/hub/",username, key);
             driver = new RemoteWebDriver(
-              new Uri("https://hub-cloud.browserstack.com/wd/hub/"), options
+              new Uri(url), options
             );
             return driver;
         }
