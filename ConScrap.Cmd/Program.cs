@@ -17,7 +17,6 @@ namespace ConScrap.Cmd
         {
             var client = new StockTwitsClient();
             var bserData = await client.GetData("DMYI");
-            Console.WriteLine(bserData);
             // test to write html file
             // var pkkCn = Browser.GetAllEntries("PKK.CN");
             // System.IO.File.WriteAllText(@"WriteText.txt", pkkCn);

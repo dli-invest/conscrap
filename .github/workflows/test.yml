@@ -17,7 +17,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.x'
+          dotnet-version: '6.0.x'
       - run: dotnet build ConScrap.Tests
       - run: dotnet test ConScrap.Tests --collect:"XPlat Code Coverage"
       - run: cp -R ConScrap.Tests/TestResults/**/*.xml .
