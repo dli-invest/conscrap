@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'main'
-      - 'bugfix/fix-scrapping'
+      - 'feature/update-to-dotnet-6.0'
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: '45 5 * * *'
@@ -29,7 +29,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '5.0.x'
+          dotnet-version: '6.0.x'
       - run: dotnet run --project ConScrap.TwitCmd
       - name: Commit files
         id: commit

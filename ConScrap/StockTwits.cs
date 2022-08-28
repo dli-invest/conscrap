@@ -55,7 +55,7 @@ namespace ConScrap
                 if (!response.IsSuccessStatusCode)
                 {
                     // PrintRespErrors(bserData);
-                    Console.WriteLine("FAILED MESSAGE");
+                    Console.WriteLine("Failed to retrieve data");
                 }
             }
             finally

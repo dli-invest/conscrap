@@ -158,7 +158,18 @@ namespace ConScrap
             };
             foreach (string stock in stocks)
             {
-                await twitProcessStock(stock, fetchConfig);
+                try {
+                    await twitProcessStock(stock, fetchConfig);
+                } // catch IndexOutOfRangeException error
+                catch (Exception ex) {
+                    Console.WriteLine(e);
+                    if (ex is IndexOutOfRangeException)
+                    {
+                        Console.WriteLine("IndexOutOfRangeException");
+                        return;
+                    } 
+                    Console.WriteLine("Error: " + ex.Message);
+                } 
             }
         }
 
