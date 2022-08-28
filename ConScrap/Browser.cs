@@ -2,8 +2,11 @@ using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System.Threading;
+
 namespace ConScrap
 {
+
+    
     public class Browser
     {
         /// <summary>
@@ -71,16 +74,28 @@ namespace ConScrap
                 try
                 {
                     var element = driver.FindElement(By.XPath(showMoreXPath));
-                    element.Click();
+                    // need a delay to show elements
+                    // click on element using javascript
+                    ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].click();", element);
+                    // element.Click();
                     Thread.Sleep(300);
 
                 }
                 catch (NoSuchElementException)
                 {
                     numFailure++;
-                    if (numFailure > 3)
+                    if (numFailure > 4)
                     {
                         Console.WriteLine(i + " Element does not exist! Stopping Loop");
+                        break;
+                    }
+                } catch(OpenQA.Selenium.ElementClickInterceptedException ex) {
+                    Console.WriteLine("ElementClickInterceptedException");
+                    numFailure++;
+                    Console.WriteLine(ex);
+                    if (numFailure > 4)
+                    {
+                        Console.WriteLine(i + " ElementClickInterceptedException! Stopping Loop");
                         break;
                     }
                 }

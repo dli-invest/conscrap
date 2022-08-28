@@ -67,8 +67,8 @@ namespace ConScrap
             List<Types.YahooComment> comments = new List<Types.YahooComment>{};
             try {
                 comments = ConScrap.GetYahooComments(stock);
-            } catch(Exception e) {
-                Console.WriteLine(e);
+            } catch(Exception ex) {
+                Console.WriteLine(ex);
                 return;
             }
 
@@ -107,6 +107,9 @@ namespace ConScrap
             }
             return;
         }
+
+        // TODO add env var to fetchStocks to get a list of stocks, this function should just parse
+        // added in stocks, rather than grab it from a constant
         public async static Task FetchStocks(bool sendDiscord = true, string dataPath = "data")
         {
             bool exists = System.IO.Directory.Exists(dataPath);
@@ -162,7 +165,7 @@ namespace ConScrap
                     await twitProcessStock(stock, fetchConfig);
                 } // catch IndexOutOfRangeException error
                 catch (Exception ex) {
-                    Console.WriteLine(e);
+                    Console.WriteLine(ex);
                     if (ex is IndexOutOfRangeException)
                     {
                         Console.WriteLine("IndexOutOfRangeException");
