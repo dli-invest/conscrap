@@ -110,14 +110,12 @@ namespace ConScrap
 
         // TODO add env var to fetchStocks to get a list of stocks, this function should just parse
         // added in stocks, rather than grab it from a constant
-        public async static Task FetchStocks(bool sendDiscord = true, string dataPath = "data")
+        public async static Task FetchStocks(string[] stocks, bool sendDiscord = true, string dataPath = "data")
         {
             bool exists = System.IO.Directory.Exists(dataPath);
 
             if (!exists)
                 System.IO.Directory.CreateDirectory(dataPath);
-
-            var stocks = Constants.stocks;
             /// \todo rate limit selenium instances to 10
             /// see bser logic
             /// \todo skip failure tickers

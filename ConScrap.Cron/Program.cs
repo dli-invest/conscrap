@@ -14,7 +14,18 @@ namespace ConScrap.Init
         static async Task Main(string[] args)
         {
             string dataPath ="data"; // Your code goes here
-            await ConScrap.FetchStocks(true, dataPath);
+            // assume Args[0] is single stonk to parse
+            string[] stonks =  {
+                ""
+            };
+            if (args.Length == 0)
+            {
+               stonks = Constants.stocks;
+            }  else {
+               stonks[0] = args[0];
+               dataPath = "data/" + args[0];
+            }
+            await ConScrap.FetchStocks(stonks, true, dataPath);
         }
         private static void Dump(object o)
         {
