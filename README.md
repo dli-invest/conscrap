@@ -4,6 +4,8 @@
 # conscrap
 conversation scrapper for ceo, yahoo finance and eventually stockhouse ( eventually)
 
+~~ DISCLAIMER YAHOO FINANCE HAS UPDATED THEIR FORMAT AND I WILL FIX THESE TESTS AND CODE NOW ~~
+
 Since I have been very good at keeping up at ceo.ca conversations, I will make the initial package only scan yahoo finance pages.
 
 ```
