@@ -2,6 +2,8 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using HtmlAgilityPack;
+using System.Xml;
+using System.Linq;
 using ConScrap.Types;
 namespace ConScrap
 {
@@ -17,16 +19,23 @@ namespace ConScrap
         /// <param name="yahooHtml"> Yahoo html in str format </param>
         public static HtmlAgilityPack.HtmlNode ExtractYahooConversationsHtml(string yahooHtml)
         {
-            var commentListClass = "comments-list";
+            var commentListClass = "spcv_messages-list";
             var htmlDoc = new HtmlDocument();
+            // write to file
+            System.IO.File.WriteAllText(@"sample.html", yahooHtml);
             htmlDoc.LoadHtml(yahooHtml);
             // var commentsSelector = "div[@class='" + commentsBodyClass + "']";
             // var commentListSelector = "div[@class='" + commentListClass + "']";
-            var commentListSelector = "ul[contains(@class, '" + commentListClass + "')]";
-            string xpath = String.Format("//{0}", commentListSelector);
-            var htmlComments = htmlDoc.
-                DocumentNode.
-                SelectSingleNode(xpath);
+            // 
+            // var commentListSelector = "*[contains(@class, '" + commentListClass + "')]";
+            // string xpath = String.Format("//{0}", commentListSelector);
+            // var htmlComments = htmlDoc.DocumentNode
+            //     .SelectSingleNode(commentListSelector);
+            var htmlComments = htmlDoc.DocumentNode
+                .SelectNodes("//ul").First();
+
+            // debugger
+            Console.WriteLine(htmlComments);
             return htmlComments;
         } 
 

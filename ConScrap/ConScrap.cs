@@ -16,10 +16,11 @@ namespace ConScrap
     /// \todo get list of stocks
     public class ConScrap
     {
-        public static List<Types.YahooComment> GetYahooComments(string ticker = "ACT.CN")
+        public static List<Types.YahooComment> GetYahooComments(string ticker = "PEAS.V")
         {
             string readText = Browser.GetAllEntries(ticker);
             var htmlDoc = Parse.MkHtmlDoc(readText);
+            // save htmlDoc as file
             var yahooData = Parse.ExtractYahooConversationsHtml(readText);
             // htmlDoc = Parse.MkHtmlDoc(yahooData.ToString());
             var yahooComments = Parse.ExtractComments(yahooData);

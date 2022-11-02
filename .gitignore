@@ -354,3 +354,4 @@ set_env.bat
 set_env.sh
 
 sentiment labelled sentences.zip
+.env
