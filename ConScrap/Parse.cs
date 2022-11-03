@@ -22,20 +22,19 @@ namespace ConScrap
             var commentListClass = "spcv_messages-list";
             var htmlDoc = new HtmlDocument();
             // write to file
-            System.IO.File.WriteAllText(@"sample.html", yahooHtml);
             htmlDoc.LoadHtml(yahooHtml);
             // var commentsSelector = "div[@class='" + commentsBodyClass + "']";
             // var commentListSelector = "div[@class='" + commentListClass + "']";
             // 
-            // var commentListSelector = "*[contains(@class, '" + commentListClass + "')]";
-            // string xpath = String.Format("//{0}", commentListSelector);
+            var commentListSelector = "ul[contains(@class, '" + commentListClass + "')]";
+            string xpath = String.Format("//{0}", commentListSelector);
             // var htmlComments = htmlDoc.DocumentNode
             //     .SelectSingleNode(commentListSelector);
             var htmlComments = htmlDoc.DocumentNode
                 .SelectNodes("//ul").First();
 
-            // debugger
-            Console.WriteLine(htmlComments);
+            // assert here?
+
             return htmlComments;
         } 
 

@@ -29,7 +29,7 @@ namespace ConScrap.Tests
         [Fact]
         public void TestScrapComments()
         {
-            string path = @"SampleData/yahoopkk.html";
+            string path = @"SampleData/sample_iframe_peas.html";
             // Open the file to read from.
             string readText = File.ReadAllText(path);
             HtmlAgilityPack.HtmlNode yahooHtml = Parse.ExtractYahooConversationsHtml(readText);
