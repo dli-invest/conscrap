@@ -89,28 +89,29 @@ namespace ConScrap
                 // perform character adjustment, make it option
                 author = AdjustStrForTex(authorNode.InnerText);
 
-                string contentCleaned = Encoding.ASCII.GetString(
-                    Encoding.Convert(
-                        Encoding.UTF8,
-                        Encoding.GetEncoding(
-                            Encoding.ASCII.EncodingName,
-                            new EncoderReplacementFallback(string.Empty),
-                            new DecoderExceptionFallback()
-                            ),
-                        Encoding.UTF8.GetBytes(contentNode.InnerText)
-                    )
-                );
-                content = AdjustStrForTex(contentCleaned);
+                // string contentCleaned = Encoding.ASCII.GetString(
+                //     Encoding.Convert(
+                //         Encoding.UTF8,
+                //         Encoding.GetEncoding(
+                //             Encoding.ASCII.EncodingName,
+                //             new EncoderReplacementFallback(string.Empty),
+                //             new DecoderExceptionFallback()
+                //             ),
+                //         Encoding.UTF8.GetBytes(contentNode.InnerText)
+                //     )
+                // );
+                content = AdjustStrForTex(contentNode.InnerText);
             } else {
                 author = authorNode.InnerText;
-                content = contentNode.InnerText;
+                content = contentNode.InnerHtml;
             }
-
+            Console.WriteLine("author: " + author);
             var yahooComment = new YahooComment{
                 PostDate=postdateNode.InnerText,
                 Content=content,
                 Author=author
             };
+            Console.WriteLine("yahooComment" + yahooComment);
 
             // add conditions
             int number;

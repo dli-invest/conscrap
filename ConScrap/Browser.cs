@@ -129,7 +129,6 @@ namespace ConScrap
 
             Thread.Sleep(15000);
             IWebElement iFrame = driver.FindElement(By.XPath("//iframe[contains(@id, 'jacSandbox')]"));
-            Console.WriteLine(iFrame);
             driver.SwitchTo().Frame(iFrame);
 
             // click on all the replies elements
@@ -152,7 +151,6 @@ namespace ConScrap
             // }
 
             String pageSource = driver.PageSource;
-            Console.WriteLine(pageSource);
             driver.SwitchTo().DefaultContent();
             // System.IO.File.WriteAllText(@"WriteText.txt", pageSource);
             return pageSource;
