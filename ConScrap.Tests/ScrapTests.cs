@@ -61,13 +61,12 @@ namespace ConScrap.Tests
         [Fact]
         public void TestScrapShowButton()
         {
-            string path = @"SampleData/yahoopkk_button.html";
+            string path = @"SampleData/sample_zim_showmore_button.html";
             // Open the file to read from.
             string readText = File.ReadAllText(path);
             HtmlAgilityPack.HtmlDocument htmlDoc = Parse.MkHtmlDoc(readText);
             var showButtonNode = Parse.GetShowButton(htmlDoc.DocumentNode);
-            Console.WriteLine(showButtonNode);
-            Assert.Equal("Show more", showButtonNode.InnerText);
+            Assert.Equal("Show More Comments", showButtonNode.InnerText);
             // Assert.Equal("<span data-reactid=\"677\">Show more</span>", showButtonNode.InnerHtml);
         }
     }

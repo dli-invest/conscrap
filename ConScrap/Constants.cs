@@ -69,7 +69,7 @@ namespace ConScrap
             public const string likesXPathLegacy = "//div/div[4]/div[2]/button[1]//text()";
             public const string dislikesXPath = "//div/div[4]/div[2]/button[2]//text()";
 
-            public const string showMoreXPath = "//button[contains(., 'Show more')]";
+            public const string showMoreXPath = "//button[contains(., 'Show More Comments')]";
             // button that contains reply text
             public const string repliesXPath = "//button[contains(., 'Replies')]";
 

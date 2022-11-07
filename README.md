@@ -20,6 +20,13 @@ dotnet tool install -g mlnet
 ```
 
 for mlnet
+
+
+To run tests:
+
+```sh
+```
+
 ## Todo
 
 - [ ] Discord Integration (send yahoo comments that meet criteria to discord)
