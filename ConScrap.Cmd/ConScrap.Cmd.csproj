@@ -16,6 +16,8 @@
   <!-- Including SampleData to scrap -->
   <ItemGroup>
     <Content Include="../ConScrap.Tests/SampleData/yahoopkk.html" Link="SampleData/yahoopkk.html" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="SampleData/sample_iframe_peas.html" Link="SampleData/sample_iframe_peas.html" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="SampleData/sample_zim_showmore_button.html" Link="SampleData/sample_zim_showmore_button.html" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

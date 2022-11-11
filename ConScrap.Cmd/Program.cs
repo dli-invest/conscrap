@@ -15,8 +15,9 @@ namespace ConScrap.Cmd
     {
         static async Task Main(string[] args)
         {
-            var client = new StockTwitsClient();
-            var bserData = await client.GetData("DMYI");
+            // var client = new StockTwitsClient();
+            // var bserData = await client.GetData("DMYI");
+            var yahooRpt = ConScrap.MkTexRpt();
             // test to write html file
             // var pkkCn = Browser.GetAllEntries("PKK.CN");
             // System.IO.File.WriteAllText(@"WriteText.txt", pkkCn);

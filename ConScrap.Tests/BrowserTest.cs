@@ -32,7 +32,7 @@ namespace ConScrap.Tests
         }
 
         [Fact]
-        public void TestExtractPkkComments()
+        public void TestExtractComments()
         {
             var yahooRpt = ConScrap.MkTexRpt();
             // Console.WriteLine(yahooComment.CommentDate);

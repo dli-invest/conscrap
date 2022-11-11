@@ -49,11 +49,11 @@ namespace ConScrap
                 string sortXPath = Constants.YahooXPaths.sortButtonXPath;
                 var sortEle = driver.FindElement(By.XPath(sortXPath));
                 sortEle.Click();
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
                 string createdXPath = Constants.YahooXPaths.sortByCreatedAtXPath;
                 var createdEle = driver.FindElement(By.XPath(createdXPath));
                 createdEle.Click();
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
                 return true;
             }
             catch (NoSuchElementException)
@@ -106,18 +106,30 @@ namespace ConScrap
         /// \todo figure out how to show replies
         public static string GetAllEntries(string ticker = "PKK.CN")
         {
+            // have to grab content from iframe this will not be fun.
             IWebDriver driver = Browser.MkBrowser();
             // use base url from contant
             string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", ticker);
             Console.WriteLine(String.Format("Parsing messages for {0}", ticker));
             driver.Navigate().GoToUrl(msgUrls);
-            Boolean success = SortByNewestComments(driver);
-            if (!success) 
-            {
-                Console.WriteLine(String.Format("Sort By newest Comments failed for {0}", ticker));
-                SortByNewestComments(driver);
-            }
-            ShowAllComments(driver);
+            // Boolean success = SortByNewestComments(driver);
+            // if (!success) 
+            // {
+            //     Console.WriteLine(String.Format("Sort By newest Comments failed for {0}", ticker));
+            //     SortByNewestComments(driver);
+            // }
+            // ShowAllComments(driver);
+            //
+            // jacSandbox_9209380
+            // 
+            // WebElement iFrame = driver.findElements(By.tagName("iframe")).get(1);
+            // driver.switchTo().frame(iframe);
+            // driver.getPageSource();
+            // driver.switchTo().defaultContent();
+
+            Thread.Sleep(15000);
+            IWebElement iFrame = driver.FindElement(By.XPath("//iframe[contains(@id, 'jacSandbox')]"));
+            driver.SwitchTo().Frame(iFrame);
 
             // click on all the replies elements
             // string repliesXPath = Constants.YahooXPaths.repliesXPath;
@@ -139,6 +151,7 @@ namespace ConScrap
             // }
 
             String pageSource = driver.PageSource;
+            driver.SwitchTo().DefaultContent();
             // System.IO.File.WriteAllText(@"WriteText.txt", pageSource);
             return pageSource;
         }

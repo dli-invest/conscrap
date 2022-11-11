@@ -1,7 +1,11 @@
 # dont want to hit rate limit, need a seperate test that only runs on linux
 name: Run Test cases
 
-on: push
+on: 
+  push:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '5 0-19/2 * * *'
 
 
 env:

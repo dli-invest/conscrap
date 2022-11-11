@@ -2,6 +2,8 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using HtmlAgilityPack;
+using System.Xml;
+using System.Linq;
 using ConScrap.Types;
 namespace ConScrap
 {
@@ -17,16 +19,22 @@ namespace ConScrap
         /// <param name="yahooHtml"> Yahoo html in str format </param>
         public static HtmlAgilityPack.HtmlNode ExtractYahooConversationsHtml(string yahooHtml)
         {
-            var commentListClass = "comments-list";
+            var commentListClass = "spcv_messages-list";
             var htmlDoc = new HtmlDocument();
+            // write to file
             htmlDoc.LoadHtml(yahooHtml);
             // var commentsSelector = "div[@class='" + commentsBodyClass + "']";
             // var commentListSelector = "div[@class='" + commentListClass + "']";
+            // 
             var commentListSelector = "ul[contains(@class, '" + commentListClass + "')]";
             string xpath = String.Format("//{0}", commentListSelector);
-            var htmlComments = htmlDoc.
-                DocumentNode.
-                SelectSingleNode(xpath);
+            // var htmlComments = htmlDoc.DocumentNode
+            //     .SelectSingleNode(commentListSelector);
+            var htmlComments = htmlDoc.DocumentNode
+                .SelectNodes("//ul").First();
+
+            // assert here?
+
             return htmlComments;
         } 
 
@@ -81,28 +89,29 @@ namespace ConScrap
                 // perform character adjustment, make it option
                 author = AdjustStrForTex(authorNode.InnerText);
 
-                string contentCleaned = Encoding.ASCII.GetString(
-                    Encoding.Convert(
-                        Encoding.UTF8,
-                        Encoding.GetEncoding(
-                            Encoding.ASCII.EncodingName,
-                            new EncoderReplacementFallback(string.Empty),
-                            new DecoderExceptionFallback()
-                            ),
-                        Encoding.UTF8.GetBytes(contentNode.InnerText)
-                    )
-                );
-                content = AdjustStrForTex(contentCleaned);
+                // string contentCleaned = Encoding.ASCII.GetString(
+                //     Encoding.Convert(
+                //         Encoding.UTF8,
+                //         Encoding.GetEncoding(
+                //             Encoding.ASCII.EncodingName,
+                //             new EncoderReplacementFallback(string.Empty),
+                //             new DecoderExceptionFallback()
+                //             ),
+                //         Encoding.UTF8.GetBytes(contentNode.InnerText)
+                //     )
+                // );
+                content = AdjustStrForTex(contentNode.InnerText);
             } else {
                 author = authorNode.InnerText;
-                content = contentNode.InnerText;
+                content = contentNode.InnerHtml;
             }
-
+            Console.WriteLine("author: " + author);
             var yahooComment = new YahooComment{
                 PostDate=postdateNode.InnerText,
                 Content=content,
                 Author=author
             };
+            Console.WriteLine("yahooComment" + yahooComment);
 
             // add conditions
             int number;
