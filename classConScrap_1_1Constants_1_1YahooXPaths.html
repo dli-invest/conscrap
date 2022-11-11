@@ -93,22 +93,31 @@ $(document).ready(function(){initNavTree('classConScrap_1_1Constants_1_1YahooXPa
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:ad4cbf446f0ef5c036341f2e48e4c636e"><td class="memItemLeft" align="right" valign="top"><a id="ad4cbf446f0ef5c036341f2e48e4c636e" name="ad4cbf446f0ef5c036341f2e48e4c636e"></a>
-const string&#160;</td><td class="memItemRight" valign="bottom"><b>postDateXPath</b> = &quot;//div/div[1]/span/span&quot;</td></tr>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>postDateXPath</b> = &quot;//*[@data-spot-im-class='message-timestamp']&quot;</td></tr>
 <tr class="separator:ad4cbf446f0ef5c036341f2e48e4c636e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39dadd4730ccb79e5ea60e20b2949a2d"><td class="memItemLeft" align="right" valign="top"><a id="a39dadd4730ccb79e5ea60e20b2949a2d" name="a39dadd4730ccb79e5ea60e20b2949a2d"></a>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>postDateXPathLegacy</b> = &quot;//div/div[1]/span/span&quot;</td></tr>
+<tr class="separator:a39dadd4730ccb79e5ea60e20b2949a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa48b97c0197577aab3709ba41472bc69"><td class="memItemLeft" align="right" valign="top"><a id="aa48b97c0197577aab3709ba41472bc69" name="aa48b97c0197577aab3709ba41472bc69"></a>
-const string&#160;</td><td class="memItemRight" valign="bottom"><b>contentXPath</b> = &quot;//div/div[2]/div&quot;</td></tr>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>contentXPath</b> = &quot;//*[@data-spot-im-class='message-text']/text()&quot;</td></tr>
 <tr class="separator:aa48b97c0197577aab3709ba41472bc69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af36f4424798044130f50b5ee5cb14a07"><td class="memItemLeft" align="right" valign="top"><a id="af36f4424798044130f50b5ee5cb14a07" name="af36f4424798044130f50b5ee5cb14a07"></a>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>authorXPathLegacy</b> = &quot;//div/div[1]/button&quot;</td></tr>
+<tr class="separator:af36f4424798044130f50b5ee5cb14a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95ffc79737ae04f606ffa194ed80939a"><td class="memItemLeft" align="right" valign="top"><a id="a95ffc79737ae04f606ffa194ed80939a" name="a95ffc79737ae04f606ffa194ed80939a"></a>
-const string&#160;</td><td class="memItemRight" valign="bottom"><b>authorXPath</b> = &quot;//div/div[1]/button&quot;</td></tr>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>authorXPath</b> = &quot;//span[@data-spot-im-class='message-username']&quot;</td></tr>
 <tr class="separator:a95ffc79737ae04f606ffa194ed80939a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e6090f22bf1c3eb5da8ef0e1482b5f6"><td class="memItemLeft" align="right" valign="top"><a id="a3e6090f22bf1c3eb5da8ef0e1482b5f6" name="a3e6090f22bf1c3eb5da8ef0e1482b5f6"></a>
-const string&#160;</td><td class="memItemRight" valign="bottom"><b>likesXPath</b> = &quot;//div/div[4]/div[2]/button[1]//text()&quot;</td></tr>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>likesXPath</b> = &quot;//span[contains(@class, 'components-MessageActions-components-VoteButtons-index__votesCounter')]/text()&quot;</td></tr>
 <tr class="separator:a3e6090f22bf1c3eb5da8ef0e1482b5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aa291f7e9cdbeb06a73f94f801230b8"><td class="memItemLeft" align="right" valign="top"><a id="a7aa291f7e9cdbeb06a73f94f801230b8" name="a7aa291f7e9cdbeb06a73f94f801230b8"></a>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>likesXPathLegacy</b> = &quot;//div/div[4]/div[2]/button[1]//text()&quot;</td></tr>
+<tr class="separator:a7aa291f7e9cdbeb06a73f94f801230b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21dd4e85509994f1527fbd375919fbfe"><td class="memItemLeft" align="right" valign="top"><a id="a21dd4e85509994f1527fbd375919fbfe" name="a21dd4e85509994f1527fbd375919fbfe"></a>
 const string&#160;</td><td class="memItemRight" valign="bottom"><b>dislikesXPath</b> = &quot;//div/div[4]/div[2]/button[2]//text()&quot;</td></tr>
 <tr class="separator:a21dd4e85509994f1527fbd375919fbfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ebf6535d1b3492044f5e988982c5e81"><td class="memItemLeft" align="right" valign="top"><a id="a0ebf6535d1b3492044f5e988982c5e81" name="a0ebf6535d1b3492044f5e988982c5e81"></a>
-const string&#160;</td><td class="memItemRight" valign="bottom"><b>showMoreXPath</b> = &quot;//button[contains(., 'Show more')]&quot;</td></tr>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>showMoreXPath</b> = &quot;//button[contains(., 'Show More Comments')]&quot;</td></tr>
 <tr class="separator:a0ebf6535d1b3492044f5e988982c5e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac595246efea8a755e2aae148440e8282"><td class="memItemLeft" align="right" valign="top"><a id="ac595246efea8a755e2aae148440e8282" name="ac595246efea8a755e2aae148440e8282"></a>
 const string&#160;</td><td class="memItemRight" valign="bottom"><b>repliesXPath</b> = &quot;//button[contains(., 'Replies')]&quot;</td></tr>
