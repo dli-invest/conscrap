@@ -132,7 +132,12 @@ namespace ConScrap
             };
             foreach (string stock in stocks)
             {
-                await ProcessStock(stock, fetchConfig);
+                try {
+                    await ProcessStock(stock, fetchConfig);
+                } catch(Exception ex) {
+                    // 
+                    Console.WriteLine(ex);
+                }
             }
         }
 
