@@ -130,11 +130,6 @@ namespace ConScrap
             Thread.Sleep(15000);
             IWebElement iFrame = driver.FindElement(By.XPath("//iframe[contains(@id, 'jacSandbox')]"));
             driver.SwitchTo().Frame(iFrame);
-
-            // click on all the replies elements
-            // string repliesXPath = Constants.YahooXPaths.repliesXPath;
-            // driver.FindElement(By.ClassName("replies-button")).Click();
-            OpenQA.Selenium.Interactions.Actions action = new OpenQA.Selenium.Interactions.Actions(driver);
             // foreach (var reply in replies)
             // {
             //     try

@@ -84,21 +84,21 @@ namespace ConScrap
                 // "PKK.CN",
                 // "IDK.CN",
                 // "ART.V",
-                // "PYR.TO",
-                // "ZIM",
-                // "DCM.TO",
-                // "VPH.CN",
-                // "DM.V",
+                "PYR.TO",
+                "ZIM",
+                "DCM.TO",
+                "VPH.CN",
+                "DM.V",
                 "ACT.CN",
-                // "POND.V",
-                // "FGI",
-                // "ERTH.CN",
-                // "RET.V",
-                // "VEON",
-                // "PAI.V",
-                // "N.V"
-                // "DVN.CN",
-                // "NM.CN"
+                "POND.V",
+                "FGI",
+                "ERTH.CN",
+                "RET.V",
+                "VEON",
+                "PAI.V",
+                "N.V"
+                "DVN.CN",
+                "NM.CN"
         };
         // stock twits stocks
         public static string[] tstocks = {
