@@ -6,11 +6,11 @@
     "configurations": [
 
         {
-            "name": ".NET Core Launch (web)",
+            "name": ".NET Core Launch (task)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp6.0/aspnetapp.dll",
+            // "preLaunchTask": "build",
+            "program": "${workspaceFolder}/ConScrap.Cron/bin/Debug/netcoreapp7.0/ConScrap.Cron.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",

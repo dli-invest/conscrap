@@ -19,10 +19,12 @@ namespace ConScrap
         public static List<Types.YahooComment> GetYahooComments(string ticker = "PEAS.V")
         {
             string readText = Browser.GetAllEntries(ticker);
+            // print read text
             var htmlDoc = Parse.MkHtmlDoc(readText);
             // save htmlDoc as file
             var yahooData = Parse.ExtractYahooConversationsHtml(readText);
             // htmlDoc = Parse.MkHtmlDoc(yahooData.ToString());
+            // print yahooData
             var yahooComments = Parse.ExtractComments(yahooData);
             return yahooComments;
         }

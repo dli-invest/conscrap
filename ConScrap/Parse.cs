@@ -30,8 +30,10 @@ namespace ConScrap
             string xpath = String.Format("//{0}", commentListSelector);
             // var htmlComments = htmlDoc.DocumentNode
             //     .SelectSingleNode(commentListSelector);
+            // output htmlDoc to file
+
             var htmlComments = htmlDoc.DocumentNode
-                .SelectNodes("//ul").First();
+                .SelectSingleNode(xpath);
 
             // assert here?
 
@@ -103,7 +105,7 @@ namespace ConScrap
                 content = AdjustStrForTex(contentNode.InnerText);
             } else {
                 author = authorNode.InnerText;
-                content = contentNode.InnerHtml;
+                content = contentNode.InnerText;
             }
             Console.WriteLine("author: " + author);
             var yahooComment = new YahooComment{

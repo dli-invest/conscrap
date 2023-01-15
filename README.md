@@ -23,11 +23,17 @@ dotnet tool install -g mlnet
 
 for mlnet
 
+To run:
+```sh
+dotnet run --project ConScrap.Cron
+```
 
 To run tests:
 
 ```sh
+dotnet test ConScrap.Tests --collect:"XPlat Code Coverage"
 ```
+
 
 ## Todo
 

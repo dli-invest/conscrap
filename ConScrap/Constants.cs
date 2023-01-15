@@ -56,12 +56,13 @@ namespace ConScrap
             public const string postDateXPath = "//*[@data-spot-im-class='message-timestamp']";
             public const string postDateXPathLegacy = "//div/div[1]/span/span";
             
-            public const string contentXPath = "//*[@data-spot-im-class='message-text']/text()";
+            public const string contentXPath = "//*[@data-spot-im-class='message-text']";
             // public const string contentXPathLegacy = "//div/div[2]/div";
 
             public const string authorXPathLegacy = "//div/div[1]/button";
 
-            public const string authorXPath = "//span[@data-spot-im-class='message-username']";
+            // user-info-username
+            public const string authorXPath = "//button[@data-spot-im-class='user-info-username']";
 
             // components-MessageActions-components-VoteButtons-index__votesCounter
             public const string likesXPath = "//span[contains(@class, 'components-MessageActions-components-VoteButtons-index__votesCounter')]/text()";
@@ -84,20 +85,20 @@ namespace ConScrap
                 // "PKK.CN",
                 // "IDK.CN",
                 // "ART.V",
-                "PYR.TO",
-                "ZIM",
-                "DCM.TO",
-                "VPH.CN",
-                "DM.V",
+                // "PYR.TO",
+                // "ZIM",
+                // "DCM.TO",
+                // "VPH.CN",
+                // "DM.V",
                 "ACT.CN",
-                "POND.V",
-                "FGI",
-                "ERTH.CN",
-                "RET.V",
-                "VEON",
+                // "POND.V",
+                // "FGI",
+                // "ERTH.CN",
+                // "RET.V",
+                // "VEON",
                 // "PAI.V",
-                "DVN.CN",
-                "NM.CN"
+                // "DVN.CN",
+                // "NM.CN"
         };
         // stock twits stocks
         public static string[] tstocks = {

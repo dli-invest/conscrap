@@ -25,6 +25,7 @@ namespace ConScrap.Init
                stonks[0] = args[0];
                dataPath = "data/" + args[0];
             }
+            // debugger to see if stonks are being passed
             await ConScrap.FetchStocks(stonks, true, dataPath);
         }
         private static void Dump(object o)
