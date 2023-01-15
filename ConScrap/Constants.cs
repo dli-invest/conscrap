@@ -95,8 +95,7 @@ namespace ConScrap
                 "ERTH.CN",
                 "RET.V",
                 "VEON",
-                "PAI.V",
-                "N.V"
+                // "PAI.V",
                 "DVN.CN",
                 "NM.CN"
         };
