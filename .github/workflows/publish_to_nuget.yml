@@ -59,6 +59,7 @@ jobs:
     - name: Publish Nuget
       if: startsWith(github.ref, 'refs/heads/release')
       run: |
+        dotnet pack --configuration $BUILD_CONFIG --no-restore
         nuget setapikey "${{ secrets.NUGET_KEY }}"
         nuget push **\*.nupkg -Source "https://api.nuget.org/v3/index.json"
         dotnet nuget push **\*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
