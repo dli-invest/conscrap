@@ -8,25 +8,26 @@ on:
     branches:
     - release/*
     
+
+env:
+  BUILD_CONFIG: 'Release'
+  SOLUTION: 'conscrap.sln'
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending usage data to Microsoft
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  # Project name to pack and publish
+  PROJECT_NAME: BserClient
+  # GitHub Packages Feed settings
+  GITHUB_FEED: https://nuget.pkg.github.com/conscrap/
+  GITHUB_USER: FriendlyUser
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # Official NuGet Feed settings
+  NUGET_FEED: https://api.nuget.org/v3/index.json
+  # NUGET_API_KEY: ${{ secrets.NUGET_KEY }}
+
 jobs:
   build:
-
-    env:
-      BUILD_CONFIG: 'Release'
-      SOLUTION: 'conscrap.sln'
-      # Stop wasting time caching packages
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
-      # Disable sending usage data to Microsoft
-      DOTNET_CLI_TELEMETRY_OPTOUT: true
-      # Project name to pack and publish
-      PROJECT_NAME: BserClient
-      # GitHub Packages Feed settings
-      GITHUB_FEED: https://nuget.pkg.github.com/conscrap/
-      GITHUB_USER: FriendlyUser
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # Official NuGet Feed settings
-      NUGET_FEED: https://api.nuget.org/v3/index.json
-      NUGET_API_KEY: ${{ secrets.NUGET_KEY }}
 
     runs-on: ubuntu-latest
 
@@ -58,7 +59,7 @@ jobs:
     - name: Publish Nuget
       if: startsWith(github.ref, 'refs/heads/release')
       run: |
-        nuget setapikey "${{ secrets.NUGET_API_KEY }}" -Source "https://api.nuget.org/v3/index.json"
+        nuget setapikey "${{ secrets.NUGET_KEY }}" -Source "https://api.nuget.org/v3/index.json"
 
         nuget push **\*.nupkg 
         dotnet nuget push **\*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
