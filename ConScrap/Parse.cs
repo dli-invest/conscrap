@@ -107,13 +107,11 @@ namespace ConScrap
                 author = authorNode.InnerText;
                 content = contentNode.InnerText;
             }
-            Console.WriteLine("author: " + author);
             var yahooComment = new YahooComment{
                 PostDate=postdateNode.InnerText,
                 Content=content,
                 Author=author
             };
-            Console.WriteLine("yahooComment" + yahooComment);
 
             // add conditions
             int number;

@@ -171,23 +171,8 @@ namespace ConScrap
             // getShadowRoot
             // output content of spotIm
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            String listElement = (String) js.ExecuteScript("""
-            function querySelectorAllShadows(selector, el = document.body) {
-                // recurse on childShadows
-                const childShadows = Array.from(el.querySelectorAll('*')).
-                    map(el => el.shadowRoot).filter(Boolean);
-
-                // console.log('[querySelectorAllShadows]', selector, el, `(${childShadows.length} shadowRoots)`);
-
-                const childResults = childShadows.map(child => querySelectorAllShadows(selector, child));
-                
-                // fuse all results into singular, flat array
-                const result = Array.from(el.querySelectorAll(selector));
-                return result.concat(childResults).flat();
-            }
-            const results = querySelectorAllShadows("ul.spcv_messages-list");
-            return results[0].outerHTML.toString();
-            """);
+            String getCommentsCmd = Constants.jsQuerySelectorAllShadows + """const results = querySelectorAllShadows("ul.spcv_messages-list"); return results[0].outerHTML.toString();""";
+            String listElement = (String) js.ExecuteScript(getCommentsCmd);
 
             Console.WriteLine("listElement", listElement);
 

@@ -46,6 +46,22 @@ namespace ConScrap
     {{ end }}
 \end{document}";
 
+        // See https://stackoverflow.com/a/71692555/10226731
+        public const string jsQuerySelectorAllShadows = 
+@"function querySelectorAllShadows(selector, el = document.body) {
+                // recurse on childShadows
+                const childShadows = Array.from(el.querySelectorAll('*')).
+                    map(el => el.shadowRoot).filter(Boolean);
+
+                // console.log('[querySelectorAllShadows]', selector, el, `(${childShadows.length} shadowRoots)`);
+
+                const childResults = childShadows.map(child => querySelectorAllShadows(selector, child));
+                
+                // fuse all results into singular, flat array
+                const result = Array.from(el.querySelectorAll(selector));
+                return result.concat(childResults).flat();
+            }
+";
         // copied from SampleData/yahoopkk_comment.html
 
         public const string yahooBasePath = "https://finance.yahoo.com";

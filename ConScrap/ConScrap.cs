@@ -75,12 +75,18 @@ namespace ConScrap
                 return;
             }
 
-            var countDiff = comments.Count - oldComments.Count;
-            // Console.WriteLine(newComments)
-            var differences = comments.Take(countDiff);
+            // print all comments using loop
+            // Console.WriteLine("All comments");
+            foreach (Types.YahooComment comment in comments)
+            {
+                Console.WriteLine(comment.Author);
+            }
+            // var countDiff = comments.Count - oldComments.Count;
+            // find new comments in comments by looking at Author And Content field in oldComments
+            var newComments = comments.Where(x => !oldComments.Any(y => y.Author == x.Author && y.Content == x.Content)).ToList();
             string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", stock);
             /// \todo batch comments in 10 to send off
-            foreach (Types.YahooComment comment in differences)
+            foreach (Types.YahooComment comment in newComments)
             {
                 try
                 {
@@ -98,16 +104,20 @@ namespace ConScrap
                         await Task.Delay(2000);
                         await Discord.SendDiscord(webhook, discordData);
                     }
+                } catch (Exception ex) {
+                    Console.WriteLine(ex);
                 }
                 finally
                 {
                     discordThrottler.Release();
                 }
-                // send to discord
-                string csvEntries = Csv.GenerateReport(comments);
-                // diff list if exists
-                System.IO.File.WriteAllText(stockFile, csvEntries);
             }
+            // get unique comments newComments and oldComments
+            var uniqueComments = comments.Union(oldComments).ToList();
+            // send to discord
+            string csvEntries = Csv.GenerateReport(uniqueComments);
+            // diff list if exists
+            System.IO.File.WriteAllText(stockFile, csvEntries);
             return;
         }
 
