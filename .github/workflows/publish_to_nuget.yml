@@ -59,6 +59,6 @@ jobs:
     - name: Publish
       if: startsWith(github.ref, 'refs/heads/release')
       run: |
-        nuget setApiKey ${{secrets.NUGET_API_KEY}} -Source 'https://api.nuget.org/v3/index.json'
+        nuget setapikey ${{ secrets.NUGET_API_KEY }} -Source 'https://api.nuget.org/v3/index.json'
         nuget push **\*.nupkg 
         dotnet nuget push **\*.nupkg --api-key  ${{ secrets.GITHUB_TOKEN }} --source "github"
