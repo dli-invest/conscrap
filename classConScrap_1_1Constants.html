@@ -114,6 +114,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a75890becd0399b2f90bcfb6dede7e0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1a38b1d2745fe6d67011ef51025909c"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConScrap_1_1Constants.html#ae1a38b1d2745fe6d67011ef51025909c">ReportTemplate</a></td></tr>
 <tr class="separator:ae1a38b1d2745fe6d67011ef51025909c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b91f17875cbc313cc3380df0deb7af8"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConScrap_1_1Constants.html#a2b91f17875cbc313cc3380df0deb7af8">jsQuerySelectorAllShadows</a></td></tr>
+<tr class="separator:a2b91f17875cbc313cc3380df0deb7af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada1f56113cde38fd6ede69aab626003d"><td class="memItemLeft" align="right" valign="top"><a id="ada1f56113cde38fd6ede69aab626003d" name="ada1f56113cde38fd6ede69aab626003d"></a>
 const string&#160;</td><td class="memItemRight" valign="bottom"><b>yahooBasePath</b> = &quot;https://finance.yahoo.com&quot;</td></tr>
 <tr class="separator:ada1f56113cde38fd6ede69aab626003d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,6 +127,43 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>yahooBasePath
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Set of <a class="el" href="classConScrap_1_1Constants.html" title="Set of Constants including sample latex documents. The latex documents should include the report date...">Constants</a> including sample latex documents. The latex documents should include the report date, format and statistics.  </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a2b91f17875cbc313cc3380df0deb7af8" name="a2b91f17875cbc313cc3380df0deb7af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b91f17875cbc313cc3380df0deb7af8">&#9670;&#160;</a></span>jsQuerySelectorAllShadows</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const string ConScrap.Constants.jsQuerySelectorAllShadows</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<div class="line"><span class="stringliteral">@&quot;function querySelectorAllShadows(selector, el = document.body) {</span></div>
+<div class="line"><span class="stringliteral">                // recurse on childShadows</span></div>
+<div class="line"><span class="stringliteral">                const childShadows = Array.from(el.querySelectorAll(&#39;*&#39;)).</span></div>
+<div class="line"><span class="stringliteral">                    map(el =&gt; el.shadowRoot).filter(Boolean);</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">                // console.log(&#39;[querySelectorAllShadows]&#39;, selector, el, `(${childShadows.length} shadowRoots)`);</span></div>
+<div class="line"><span class="stringliteral"></span> </div>
+<div class="line"><span class="stringliteral">                const childResults = childShadows.map(child =&gt; querySelectorAllShadows(selector, child));</span></div>
+<div class="line"><span class="stringliteral">                </span></div>
+<div class="line"><span class="stringliteral">                // fuse all results into singular, flat array</span></div>
+<div class="line"><span class="stringliteral">                const result = Array.from(el.querySelectorAll(selector));</span></div>
+<div class="line"><span class="stringliteral">                return result.concat(childResults).flat();</span></div>
+<div class="line"><span class="stringliteral">            }</span></div>
+<div class="line"><span class="stringliteral">&quot;</span></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a75890becd0399b2f90bcfb6dede7e0d1" name="a75890becd0399b2f90bcfb6dede7e0d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a75890becd0399b2f90bcfb6dede7e0d1">&#9670;&#160;</a></span>PlainBox</h2>
 
@@ -247,20 +286,20 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>yahooBasePath
 <div class="line">                </div>
 <div class="line">                </div>
 <div class="line">                </div>
-<div class="line">                <span class="stringliteral">&quot;PYR.TO&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;ZIM&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;DCM.TO&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;VPH.CN&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;DM.V&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;ACT.CN&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;POND.V&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;FGI&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;ERTH.CN&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;RET.V&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;VEON&quot;</span>,</div>
 <div class="line">                </div>
-<div class="line">                <span class="stringliteral">&quot;DVN.CN&quot;</span>,</div>
-<div class="line">                <span class="stringliteral">&quot;NM.CN&quot;</span></div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                <span class="stringliteral">&quot;ACT.CN&quot;</span>,</div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
+<div class="line">                </div>
 <div class="line">        }</div>
 </div><!-- fragment -->
 </div>
