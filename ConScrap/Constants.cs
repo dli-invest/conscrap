@@ -84,7 +84,7 @@ namespace ConScrap
             public const string likesXPath = "//span[contains(@class, 'components-MessageActions-components-VoteButtons-index__votesCounter')]/text()";
 
             public const string likesXPathLegacy = "//div/div[4]/div[2]/button[1]//text()";
-            public const string dislikesXPath = "//div/div[4]/div[2]/button[2]//text()";
+            public const string dislikesXPath = "//*[contains(@class, 'components-MessageActions-components-VoteButtons-index__votesCounter')]//span[1]/text()";
 
             public const string showMoreXPath = "//button[contains(., 'Show More Comments')]";
             // button that contains reply text

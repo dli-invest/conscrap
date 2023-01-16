@@ -115,7 +115,9 @@ namespace ConScrap
 
             // add conditions
             int number;
+            Console.WriteLine("likesNode: {0}", likesNode);
             if (likesNode != null) {
+                Console.WriteLine("likesNode.InnerText: {0}", likesNode.InnerText);
                 Int32.TryParse(likesNode.InnerText, out number);
                 yahooComment.Likes = number;
                 number = 0;

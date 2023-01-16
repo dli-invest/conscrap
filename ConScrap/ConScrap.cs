@@ -77,10 +77,6 @@ namespace ConScrap
 
             // print all comments using loop
             // Console.WriteLine("All comments");
-            foreach (Types.YahooComment comment in comments)
-            {
-                Console.WriteLine(comment.Author);
-            }
             // var countDiff = comments.Count - oldComments.Count;
             // find new comments in comments by looking at Author And Content field in oldComments
             var newComments = comments.Where(x => !oldComments.Any(y => y.Author == x.Author && y.Content == x.Content)).ToList();
