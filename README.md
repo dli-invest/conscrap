@@ -4,7 +4,7 @@
 # conscrap
 conversation scrapper for ceo, yahoo finance and eventually stockhouse ( eventually)
 
-~~ DISCLAIMER YAHOO FINANCE HAS UPDATED THEIR FORMAT AND I WILL FIX THESE TESTS AND CODE NOW ~~
+Half working scrapper, will FIX TESTS LATER.
 
 Since I have been very good at keeping up at ceo.ca conversations, I will make the initial package only scan yahoo finance pages.
 
@@ -23,11 +23,17 @@ dotnet tool install -g mlnet
 
 for mlnet
 
+To run:
+```sh
+dotnet run --project ConScrap.Cron
+```
 
 To run tests:
 
 ```sh
+dotnet test ConScrap.Tests --collect:"XPlat Code Coverage"
 ```
+
 
 ## Todo
 

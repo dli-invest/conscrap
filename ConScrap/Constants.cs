@@ -46,6 +46,22 @@ namespace ConScrap
     {{ end }}
 \end{document}";
 
+        // See https://stackoverflow.com/a/71692555/10226731
+        public const string jsQuerySelectorAllShadows = 
+@"function querySelectorAllShadows(selector, el = document.body) {
+                // recurse on childShadows
+                const childShadows = Array.from(el.querySelectorAll('*')).
+                    map(el => el.shadowRoot).filter(Boolean);
+
+                // console.log('[querySelectorAllShadows]', selector, el, `(${childShadows.length} shadowRoots)`);
+
+                const childResults = childShadows.map(child => querySelectorAllShadows(selector, child));
+                
+                // fuse all results into singular, flat array
+                const result = Array.from(el.querySelectorAll(selector));
+                return result.concat(childResults).flat();
+            }
+";
         // copied from SampleData/yahoopkk_comment.html
 
         public const string yahooBasePath = "https://finance.yahoo.com";
@@ -56,18 +72,19 @@ namespace ConScrap
             public const string postDateXPath = "//*[@data-spot-im-class='message-timestamp']";
             public const string postDateXPathLegacy = "//div/div[1]/span/span";
             
-            public const string contentXPath = "//*[@data-spot-im-class='message-text']/text()";
+            public const string contentXPath = "//*[@data-spot-im-class='message-text']";
             // public const string contentXPathLegacy = "//div/div[2]/div";
 
             public const string authorXPathLegacy = "//div/div[1]/button";
 
-            public const string authorXPath = "//span[@data-spot-im-class='message-username']";
+            // user-info-username
+            public const string authorXPath = "//button[@data-spot-im-class='user-info-username']";
 
             // components-MessageActions-components-VoteButtons-index__votesCounter
             public const string likesXPath = "//span[contains(@class, 'components-MessageActions-components-VoteButtons-index__votesCounter')]/text()";
 
             public const string likesXPathLegacy = "//div/div[4]/div[2]/button[1]//text()";
-            public const string dislikesXPath = "//div/div[4]/div[2]/button[2]//text()";
+            public const string dislikesXPath = "//*[contains(@class, 'components-MessageActions-components-VoteButtons-index__votesCounter')]//span[1]/text()";
 
             public const string showMoreXPath = "//button[contains(., 'Show More Comments')]";
             // button that contains reply text
@@ -84,20 +101,20 @@ namespace ConScrap
                 // "PKK.CN",
                 // "IDK.CN",
                 // "ART.V",
-                "PYR.TO",
-                "ZIM",
-                "DCM.TO",
-                "VPH.CN",
-                "DM.V",
+                // "PYR.TO",
+                // "ZIM",
+                // "DCM.TO",
+                // "VPH.CN",
+                // "DM.V",
                 "ACT.CN",
-                "POND.V",
-                "FGI",
-                "ERTH.CN",
-                "RET.V",
-                "VEON",
+                // "POND.V",
+                // "FGI",
+                // "ERTH.CN",
+                // "RET.V",
+                // "VEON",
                 // "PAI.V",
-                "DVN.CN",
-                "NM.CN"
+                // "DVN.CN",
+                // "NM.CN"
         };
         // stock twits stocks
         public static string[] tstocks = {

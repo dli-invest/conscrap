@@ -2,6 +2,7 @@ using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using System.Threading;
+using OpenQA.Selenium.Support;
 using System.Collections.Generic;
 
 namespace ConScrap
@@ -27,6 +28,7 @@ namespace ConScrap
             options.AddAdditionalOption("resolution", "1920x1080");
             options.AddAdditionalOption("browser", "Chrome");
             options.AddAdditionalOption("browser_version", "latest");
+            options.AddAdditionalOption("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) ''Chrome/94.0.4606.81 Safari/537.36");
             // caps.Add("os", "Windows");
             // caps.Add("name", "BStack-[C_sharp] Sample Test"); // test name
             // caps.Add("buildName", "BStack Build Number 1"); // CI/CD job or build name
@@ -127,9 +129,18 @@ namespace ConScrap
             // driver.getPageSource();
             // driver.switchTo().defaultContent();
 
-            Thread.Sleep(15000);
+            Thread.Sleep(10000);
+            try {
+                // find Maybe later by text Maybe Later
+                IWebElement maybeLater = driver.FindElement(By.XPath("//button[contains(text(), 'Maybe later')]"));
+                // IWebElement maybeLater = driver.FindElement(By.XPath("//button[contains(@class, 'btn btn-primary')]"));
+                maybeLater.Click();
+            } catch (NoSuchElementException) {
+                Console.WriteLine("No Maybe Later Button");
+            }
             IWebElement iFrame = driver.FindElement(By.XPath("//iframe[contains(@id, 'jacSandbox')]"));
             driver.SwitchTo().Frame(iFrame);
+            Thread.Sleep(2500);
             // foreach (var reply in replies)
             // {
             //     try
@@ -145,10 +156,47 @@ namespace ConScrap
             //     }
             // }
 
-            String pageSource = driver.PageSource;
+            // String pageSource = driver.PageSource;
+            // content = driver.
+            // Run javascript return document.getElementsByTagName('html')[0].innerHTML
+            // using webdriver
+            // Click Maybe Later button if available
+            Thread.Sleep(1500);
+            // IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            // String pageSource = js.ExecuteScript("return document.getElementsByTagName('html')[0].outerHTML").ToString();
+            // get spotIm-in-jac-conversations
+            // //*[@id="spotim-specific"]/div/div
+            // get element by xpath
+            IWebElement spotIm = driver.FindElement(By.XPath("//*[@id=\"spotim-specific\"]/div/div"));
+            // getShadowRoot
+            // output content of spotIm
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            String getCommentsCmd = Constants.jsQuerySelectorAllShadows + """const results = querySelectorAllShadows("ul.spcv_messages-list"); return results[0].outerHTML.toString();""";
+            String listElement = (String) js.ExecuteScript(getCommentsCmd);
+
+            Console.WriteLine("listElement", listElement);
+
+            // shadowRoot.FindElement(By.TagName("div"));
+            // shadow_root = driver.execute_script('return arguments[0].shadowRoot', element)
+
+            // var getShadowRoot = spotIm.GetShadowRoot();
+            // get element spcv_mainContainer
+            // get outer htlm from shadowroot
+            // getShadowRoot Elements
+            // var getShadowRootElements = shadowRoot.FindElements(By.Name("div"));
+            // Console.WriteLine(getShadowRootElements.Count);
+            // // var fullContent = getShadowRoot.FindElements(By.TagName("div"))[0];
+            // // Console.WriteLine(fullContent.GetAttribute("outerHTML"));
+            // IWebElement spcv_mainContainer = shadowRoot.FindElement(By.XPath("/div/div/div/div/div/div"));
+            // print htmlCOntent of spcv_mainContainer
+            // Console.WriteLine(spcv_mainContainer.GetAttribute("innerHTML"));
+            // // String pageSource = getShadowRoot.PageSource;
+            // // write pageSource to file
+            // String pageSource = spcv_mainContainer.GetAttribute("innerHTML");
+            // System.IO.File.WriteAllText(@"WriteText.html", listElement);
             driver.SwitchTo().DefaultContent();
             // System.IO.File.WriteAllText(@"WriteText.txt", pageSource);
-            return pageSource;
+            return listElement.ToString();
         }
 
         public static void TestBrowser()
