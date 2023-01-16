@@ -58,24 +58,7 @@ jobs:
 
     - name: Publish Nuget
       if: startsWith(github.ref, 'refs/heads/release')
-      id: publish_nuget
-      uses: brandedoutcast/publish-nuget@v2
-      with:
-        # Filepath of the project to be packaged, relative to root of repository
-        PROJECT_FILE_PATH: Conscrap/Conscrap.csproj
-        NUGET_KEY: ${{ secrets.NUGET_KEY }}
-
-
-    - name: Publish Github
-      if: startsWith(github.ref, 'refs/heads/release')
-      id: publish_github
-      uses: brandedoutcast/publish-nuget@v2
-      with:
-        # Filepath of the project to be packaged, relative to root of repository
-        PROJECT_FILE_PATH: Conscrap/Conscrap.csproj
-        NUGET_KEY: ${{ secrets.GITHUB_TOKEN }}
-        SOURCE: github
-      # run: |
-      #   nuget setapikey "${{ secrets.NUGET_API_KEY }}"" -Source 'https://api.nuget.org/v3/index.json'
-      #   nuget push **\*.nupkg 
-      #   dotnet nuget push **\*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
+      run: |
+        nuget setapikey "${{ secrets.NUGET_API_KEY }}" -Source 'https://api.nuget.org/v3/index.json'
+        nuget push **\*.nupkg 
+        dotnet nuget push **\*.nupkg --api-key "${{ secrets.GITHUB_TOKEN }}" --source "github"
