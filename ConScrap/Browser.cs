@@ -167,7 +167,11 @@ namespace ConScrap
             // get spotIm-in-jac-conversations
             // //*[@id="spotim-specific"]/div/div
             // get element by xpath
-            IWebElement spotIm = driver.FindElement(By.XPath("//*[@id=\"spotim-specific\"]/div/div"));
+            try {
+                IWebElement spotIm = driver.FindElement(By.XPath("//*[@id=\"spotim-specific\"]/div/div"));
+            } catch (NoSuchElementException) {
+                Console.WriteLine("No spotIm element");
+            }
             // getShadowRoot
             // output content of spotIm
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
