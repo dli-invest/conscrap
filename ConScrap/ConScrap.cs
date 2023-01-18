@@ -46,6 +46,25 @@ namespace ConScrap
             return rpt;
         }
 
+        public static bool isNewComment(Types.YahooComment comment) 
+        {
+            // check date if contains parsable date and if not, check for days ago and hours ago
+            try {
+                var parsedDate = DateTime.Parse(comment.PostDate);
+                return false;
+            } catch (System.Reflection.TargetInvocationException e) {
+                // check for days ago
+                if (comment.PostDate.Contains("days ago")) {
+                    return false;
+                }
+                // check for hours ago
+                if (comment.PostDate.Contains("months ago")) {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         // add timeout per stock
         public async static Task ProcessStock(string stock, Types.FetchConfig fetchConfig)
         {
@@ -79,7 +98,7 @@ namespace ConScrap
             // Console.WriteLine("All comments");
             // var countDiff = comments.Count - oldComments.Count;
             // find new comments in comments by looking at Author And Content field in oldComments
-            var newComments = comments.Where(x => !oldComments.Any(y => y.Author == x.Author && y.Content == x.Content)).ToList();
+            var newComments = comments.Where(x => !oldComments.Any(y => y.Author == x.Author && y.Content == x.Content) && isNewComment(x)).ToList();
             string msgUrls = String.Format("https://finance.yahoo.com/quote/{0}/community?p={0}", stock);
             /// \todo batch comments in 10 to send off
             foreach (Types.YahooComment comment in newComments)
